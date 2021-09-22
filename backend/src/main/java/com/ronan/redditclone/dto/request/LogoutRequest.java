@@ -1,8 +1,9 @@
-package com.ronan.redditclone.dto;
+package com.ronan.redditclone.dto.request;
 
 import javax.validation.constraints.NotBlank;
 
 public class LogoutRequest {
+    
     @NotBlank
     private String refreshToken;
 

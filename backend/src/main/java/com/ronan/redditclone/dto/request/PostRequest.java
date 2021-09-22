@@ -1,4 +1,4 @@
-package com.ronan.redditclone.dto;
+package com.ronan.redditclone.dto.request;
 
 public class PostRequest {
     private Long postId;

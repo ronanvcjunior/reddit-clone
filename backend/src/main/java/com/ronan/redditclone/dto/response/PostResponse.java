@@ -1,4 +1,4 @@
-package com.ronan.redditclone.dto;
+package com.ronan.redditclone.dto.response;
 
 public class PostResponse {
     private Long id;

@@ -20,13 +20,13 @@ public class Comment {
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "postId", referencedColumnName = "postId")
     private Post post;
-
-    private Instant createdDate;
-
+    
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "userId", referencedColumnName = "userId")
     private User user;
-
+    
+    private Instant createdDate;
+    
     public Comment() {
     }
 
