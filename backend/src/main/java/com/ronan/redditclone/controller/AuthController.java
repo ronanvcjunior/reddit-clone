@@ -1,7 +1,9 @@
 package com.ronan.redditclone.controller;
 
 import com.ronan.redditclone.domain.User;
+import com.ronan.redditclone.dto.request.LoginRequest;
 import com.ronan.redditclone.dto.request.RegisterRequest;
+import com.ronan.redditclone.dto.response.AuthenticationResponse;
 import com.ronan.redditclone.service.AuthService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,5 +33,12 @@ public class AuthController {
     public ResponseEntity<User> verifyAccount(@PathVariable String token) {
         User user = service.verifyAccount(token);
         return ResponseEntity.ok().body(user);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<AuthenticationResponse> login(@RequestBody LoginRequest loginRequest) {
+        AuthenticationResponse authenticationResponse = service.login(loginRequest);
+
+        return ResponseEntity.ok().body(authenticationResponse);
     }
 }

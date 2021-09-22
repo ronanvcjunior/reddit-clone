@@ -11,6 +11,11 @@ public class AuthenticationResponse {
     public AuthenticationResponse() {
     }
 
+    public AuthenticationResponse(String authenticationToken, String username) {
+        this.authenticationToken = authenticationToken;
+        this.username = username;
+    }
+
     public AuthenticationResponse(String authenticationToken, String refreshToken, Instant expiresAt, String username) {
         this.authenticationToken = authenticationToken;
         this.refreshToken = refreshToken;

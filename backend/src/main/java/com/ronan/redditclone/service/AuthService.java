@@ -7,12 +7,19 @@ import java.util.UUID;
 import com.ronan.redditclone.domain.NotificationEmail;
 import com.ronan.redditclone.domain.User;
 import com.ronan.redditclone.domain.VerificationToken;
+import com.ronan.redditclone.dto.request.LoginRequest;
 import com.ronan.redditclone.dto.request.RegisterRequest;
+import com.ronan.redditclone.dto.response.AuthenticationResponse;
 import com.ronan.redditclone.exception.SpringRedditException;
 import com.ronan.redditclone.repository.UserRepository;
 import com.ronan.redditclone.repository.VerificationTokenRepository;
+import com.ronan.redditclone.security.JwtProvider;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -30,13 +37,19 @@ public class AuthService {
 
     @Autowired
     private MailService mailService;
+
+    @Autowired 
+    private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private JwtProvider jwtProvider;
     
     public User signup(RegisterRequest registerRequest) {
         User user = signupDate(registerRequest);
 
         User userS = repository.save(user);
 
-        generateVerificationMail(userS);
+        // generateVerificationMail(userS);
 
         return userS;
     }
@@ -47,7 +60,8 @@ public class AuthService {
         user.setEmail(registerRequest.getEmail());
         user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
         user.setCreated(Instant.now());
-        user.setEnabled(false);
+        // user.setEnabled(false);
+        user.setEnabled(true);
         return user;
     }
     
@@ -82,6 +96,16 @@ public class AuthService {
         User user = repository.findByUsername(username).orElseThrow(() -> new SpringRedditException("User not found with name - " + username));
         user.setEnabled(true);
         return repository.save(user);
+    }
+
+    public AuthenticationResponse login(LoginRequest loginRequest) {
+        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = 
+                new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword());
+
+        Authentication authentication = authenticationManager.authenticate(usernamePasswordAuthenticationToken);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        String token = jwtProvider.generateToken(authentication);
+        return new AuthenticationResponse(token, loginRequest.getUsername());
     }
 
 }
