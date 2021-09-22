@@ -1,12 +1,14 @@
 package com.ronan.redditclone.service;
 
 import java.time.Instant;
+import java.util.Optional;
 import java.util.UUID;
 
 import com.ronan.redditclone.domain.NotificationEmail;
 import com.ronan.redditclone.domain.User;
 import com.ronan.redditclone.domain.VerificationToken;
 import com.ronan.redditclone.dto.request.RegisterRequest;
+import com.ronan.redditclone.exception.SpringRedditException;
 import com.ronan.redditclone.repository.UserRepository;
 import com.ronan.redditclone.repository.VerificationTokenRepository;
 
@@ -67,6 +69,19 @@ public class AuthService {
         verificationTokenRepository.save(verificationToken);
 
         return token;
+    }
+
+    public User verifyAccount(String token) {
+        Optional<VerificationToken> verificationToken = verificationTokenRepository.findByToken(token);
+        verificationToken.orElseThrow(() -> new SpringRedditException("Invalid Token"));
+        return fetchUserAndEnable(verificationToken.get());
+    }
+
+    private User fetchUserAndEnable(VerificationToken verificationToken) {
+        String username = verificationToken.getUser().getUsername();
+        User user = repository.findByUsername(username).orElseThrow(() -> new SpringRedditException("User not found with name - " + username));
+        user.setEnabled(true);
+        return repository.save(user);
     }
 
 }

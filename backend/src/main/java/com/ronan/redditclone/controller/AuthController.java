@@ -7,6 +7,8 @@ import com.ronan.redditclone.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,5 +25,11 @@ public class AuthController {
     public ResponseEntity<User> signup(@RequestBody RegisterRequest registerRequest) {
         User user = service.signup(registerRequest);
         return ResponseEntity.status(HttpStatus.OK).body(user);
+    }
+
+    @GetMapping("/accountVerification/{token}")
+    public ResponseEntity<User> verifyAccount(@PathVariable String token) {
+        User user = service.verifyAccount(token);
+        return ResponseEntity.ok().body(user);
     }
 }
