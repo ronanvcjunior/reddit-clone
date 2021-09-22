@@ -1,4 +1,4 @@
-package com.ronan.redditclone;
+package com.ronan.redditclone.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
