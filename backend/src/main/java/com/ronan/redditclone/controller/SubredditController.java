@@ -33,13 +33,19 @@ public class SubredditController {
 
     @GetMapping
     public ResponseEntity<List<SubredditDto>> getAllSubreddits() {
-        List<SubredditDto> subredditDtos = service.getAll();
+        List<SubredditDto> subredditDtos = service.findAll();
         return ResponseEntity.ok().body(subredditDtos);
     }
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<SubredditDto> getSubredditById(@PathVariable Long id) {
-        SubredditDto subredditDto = service.getById(id);
+        SubredditDto subredditDto = service.findById(id);
+        return ResponseEntity.ok().body(subredditDto);
+    }
+
+    @GetMapping(path = "/name/{nameSubreddit}")
+    public ResponseEntity<SubredditDto> getSubredditByName(@PathVariable String nameSubreddit) {
+        SubredditDto subredditDto = service.findByName(nameSubreddit);
         return ResponseEntity.ok().body(subredditDto);
     }
     
