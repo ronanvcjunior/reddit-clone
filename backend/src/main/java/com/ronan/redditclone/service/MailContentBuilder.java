@@ -1,15 +1,16 @@
 package com.ronan.redditclone.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
+import lombok.AllArgsConstructor;
+
 @Service
+@AllArgsConstructor
 public class MailContentBuilder {
     
-    @Autowired
-    private TemplateEngine templateEngine;
+    private final TemplateEngine templateEngine;
 
     String build(String message) {
         Context context = new Context();

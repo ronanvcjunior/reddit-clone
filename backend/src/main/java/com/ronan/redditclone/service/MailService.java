@@ -3,21 +3,21 @@ package com.ronan.redditclone.service;
 import com.ronan.redditclone.domain.NotificationEmail;
 import com.ronan.redditclone.exception.SpringRedditException;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+import lombok.AllArgsConstructor;
+
 @Service
+@AllArgsConstructor
 public class MailService {
 
-    @Autowired
-    private JavaMailSender mailSender;
+    private final JavaMailSender mailSender;
 
-    @Autowired
-    private MailContentBuilder mailContentBuilder;
+    private final MailContentBuilder mailContentBuilder;
     
     @Async
     public void sendMail(NotificationEmail notificationEmail) {

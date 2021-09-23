@@ -7,14 +7,15 @@ import com.ronan.redditclone.domain.Subreddit;
 import com.ronan.redditclone.dto.SubredditDto;
 import com.ronan.redditclone.repository.SubredditRepository;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import lombok.AllArgsConstructor;
+
 @Service
+@AllArgsConstructor
 public class SubredditService {
 
-    @Autowired
-    private SubredditRepository repository;
+    private final SubredditRepository repository;
     
     public SubredditDto save(SubredditDto subredditDto) {
         Subreddit subreddit = mapSubredditDto(subredditDto);
@@ -26,7 +27,7 @@ public class SubredditService {
     private Subreddit mapSubredditDto(SubredditDto subredditDto) {
         Subreddit subreddit = new Subreddit();
         subreddit.setName(subredditDto.getName());
-        subreddit.description(subredditDto.getDescription());
+        subreddit.setDescription(subredditDto.getDescription());
 
         return subreddit;
     }
@@ -40,7 +41,7 @@ public class SubredditService {
         SubredditDto subredditDto = new SubredditDto();
         subredditDto.setId(subreddit.getId());
         subredditDto.setName(subreddit.getName());
-        subredditDto.description(subreddit.getDescription());
+        subredditDto.setDescription(subreddit.getDescription());
         subredditDto.setNumberOfPosts(subreddit.getPosts().size());
 
         return subredditDto;
