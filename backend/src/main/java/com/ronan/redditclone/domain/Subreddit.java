@@ -26,6 +26,7 @@ public class Subreddit implements Serializable {
     private Long id;
 
     @NotBlank(message = "Community name is required")
+    @Column(unique = true)
     private String name;
 
     @NotBlank(message = "Description is required")

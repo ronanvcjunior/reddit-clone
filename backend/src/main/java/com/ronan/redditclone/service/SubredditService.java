@@ -18,6 +18,7 @@ import lombok.AllArgsConstructor;
 public class SubredditService {
 
     private final SubredditRepository repository;
+    
     private final SubredditMapper mapper;
     
     public SubredditDto save(SubredditDto subredditDto) {

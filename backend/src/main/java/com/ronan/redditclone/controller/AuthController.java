@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.AllArgsConstructor;
 
+
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/auth")
@@ -42,4 +43,11 @@ public class AuthController {
 
         return ResponseEntity.ok().body(authenticationResponse);
     }
+
+    @GetMapping(value="/user")
+    public ResponseEntity<User> getCurrentUser() {
+        User user = service.getCurrentUser();
+        return ResponseEntity.ok().body(user);
+    }
+    
 }
