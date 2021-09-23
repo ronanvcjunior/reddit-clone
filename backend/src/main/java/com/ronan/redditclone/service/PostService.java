@@ -43,4 +43,11 @@ public class PostService {
         List<PostResponse> postResponses = posts.stream().map(mapper::mapPostToResponse).collect(Collectors.toList());
         return postResponses;
     }
+
+    public PostResponse findById(Long id) {
+        Post post = repository.findById(id)
+                .orElseThrow(() -> new SpringRedditException("No subreddit found with ID - " + id));
+        PostResponse postResponse = mapper.mapPostToResponse(post);
+        return postResponse;
+    }
 }
