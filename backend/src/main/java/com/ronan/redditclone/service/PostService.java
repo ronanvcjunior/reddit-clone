@@ -1,8 +1,12 @@
 package com.ronan.redditclone.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.ronan.redditclone.domain.Post;
 import com.ronan.redditclone.domain.Subreddit;
 import com.ronan.redditclone.dto.request.PostRequest;
+import com.ronan.redditclone.dto.response.PostResponse;
 import com.ronan.redditclone.exception.SpringRedditException;
 import com.ronan.redditclone.mapper.PostMapper;
 import com.ronan.redditclone.repository.PostRepository;
@@ -32,5 +36,11 @@ public class PostService {
         Post post = mapper.mapRequestToPost(postRequest, subreddit, authService.getCurrentUser());
         post = repository.save(post);
         return post;
+    }
+
+    public List<PostResponse> findAll() {
+        List<Post> posts = repository.findAll();
+        List<PostResponse> postResponses = posts.stream().map(mapper::mapPostToResponse).collect(Collectors.toList());
+        return postResponses;
     }
 }

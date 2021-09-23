@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.ronan.redditclone.domain.Post;
 import com.ronan.redditclone.dto.request.PostRequest;
+import com.ronan.redditclone.dto.response.PostResponse;
 import com.ronan.redditclone.service.PostService;
 
 import org.springframework.http.HttpStatus;
@@ -30,11 +31,11 @@ public class PostController {
         return ResponseEntity.status(HttpStatus.CREATED).body(save);
     }
 
-//     @GetMapping
-//     public ResponseEntity<List<Post>> getAllPosts() {
-//         List<Post> postDtos = service.findAll();
-//         return ResponseEntity.ok().body(postDtos);
-//     }
+    @GetMapping
+    public ResponseEntity<List<PostResponse>> getAllPosts() {
+        List<PostResponse> postDtos = service.findAll();
+        return ResponseEntity.ok().body(postDtos);
+    }
 
 //     @GetMapping(path = "/{id}")
 //     public ResponseEntity<Post> getPostById(@PathVariable Long id) {
