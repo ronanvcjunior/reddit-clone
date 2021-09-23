@@ -2,7 +2,6 @@ package com.ronan.redditclone.config;
 
 import com.ronan.redditclone.security.JwtAuthenticationFilter;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;

@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import com.ronan.redditclone.domain.Subreddit;
 import com.ronan.redditclone.dto.SubredditDto;
+import com.ronan.redditclone.mapper.SubredditMapper;
 import com.ronan.redditclone.repository.SubredditRepository;
 
 import org.springframework.stereotype.Service;
@@ -16,34 +17,17 @@ import lombok.AllArgsConstructor;
 public class SubredditService {
 
     private final SubredditRepository repository;
+    private final SubredditMapper mapper;
     
     public SubredditDto save(SubredditDto subredditDto) {
-        Subreddit subreddit = mapSubredditDto(subredditDto);
+        Subreddit subreddit = mapper.mapDtoToSubreddit(subredditDto);
         Subreddit save = repository.save(subreddit);
         subredditDto.setId(save.getId());
         return subredditDto;
     }
 
-    private Subreddit mapSubredditDto(SubredditDto subredditDto) {
-        Subreddit subreddit = new Subreddit();
-        subreddit.setName(subredditDto.getName());
-        subreddit.setDescription(subredditDto.getDescription());
-
-        return subreddit;
-    }
-
     public List<SubredditDto> getAll() {
-        List<SubredditDto> subredditDtos = repository.findAll().stream().map(this::mapToDto).collect(Collectors.toList());
+        List<SubredditDto> subredditDtos = repository.findAll().stream().map(mapper::mapSubredditToDto).collect(Collectors.toList());
         return subredditDtos;
-    }
-
-    private SubredditDto mapToDto(Subreddit subreddit) {
-        SubredditDto subredditDto = new SubredditDto();
-        subredditDto.setId(subreddit.getId());
-        subredditDto.setName(subreddit.getName());
-        subredditDto.setDescription(subreddit.getDescription());
-        subredditDto.setNumberOfPosts(subreddit.getPosts().size());
-
-        return subredditDto;
     }
 }
