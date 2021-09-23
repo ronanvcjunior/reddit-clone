@@ -27,7 +27,14 @@ public class SubredditService {
     }
 
     public List<SubredditDto> getAll() {
-        List<SubredditDto> subredditDtos = repository.findAll().stream().map(mapper::mapSubredditToDto).collect(Collectors.toList());
+        List<Subreddit> subreddits = repository.findAll();
+        List<SubredditDto> subredditDtos = subreddits.stream().map(mapper::mapSubredditToDto).collect(Collectors.toList());
         return subredditDtos;
+    }
+
+    public SubredditDto getById(Long id) {
+        Subreddit subreddit = repository.getById(id);
+        SubredditDto subredditDto = mapper.mapSubredditToDto(subreddit);
+        return subredditDto;
     }
 }

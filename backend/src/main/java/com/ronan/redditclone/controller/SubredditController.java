@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.AllArgsConstructor;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 
 @RestController
@@ -34,6 +35,12 @@ public class SubredditController {
     public ResponseEntity<List<SubredditDto>> getAllSubreddits() {
         List<SubredditDto> subredditDtos = service.getAll();
         return ResponseEntity.ok().body(subredditDtos);
+    }
+
+    @GetMapping(path = "/{id}")
+    public ResponseEntity<SubredditDto> getSubredditById(@PathVariable Long id) {
+        SubredditDto subredditDto = service.getById(id);
+        return ResponseEntity.ok().body(subredditDto);
     }
     
 }
