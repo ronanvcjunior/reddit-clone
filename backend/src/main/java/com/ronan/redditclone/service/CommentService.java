@@ -1,5 +1,8 @@
 package com.ronan.redditclone.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.ronan.redditclone.domain.Comment;
 import com.ronan.redditclone.domain.Post;
 import com.ronan.redditclone.dto.CommentsDto;
@@ -31,5 +34,13 @@ public class CommentService {
         comment = repository.save(comment);
         CommentsDto save = mapper.mapCommentToDto(comment);
         return save;
+    }
+
+    public List<CommentsDto> getAllCommentsForPost(Long postId) {
+        Post post = postRepository.findById(postId)
+                .orElseThrow(() -> new PostNotFoundException("No subreddit found with ID - " + postId));
+        List<Comment> comments = repository.findByPost(post);
+        List<CommentsDto> commentsDtos = comments.stream().map(mapper::mapCommentToDto).collect(Collectors.toList());
+        return commentsDtos;
     }
 }
