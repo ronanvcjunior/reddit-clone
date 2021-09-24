@@ -34,4 +34,10 @@ public class CommentController {
         List<CommentsDto> commentsDtos = service.getAllCommentsForPost(postId);
         return ResponseEntity.ok().body(commentsDtos);
     }
+
+    @GetMapping("/by-user/{username}")
+    public ResponseEntity<List<CommentsDto>> getAllCommentsForUser(@PathVariable String username) {
+        List<CommentsDto> commentsDtos = service.getAllCommentsForUser(username);
+        return ResponseEntity.ok().body(commentsDtos);
+    }
 }
