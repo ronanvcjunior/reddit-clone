@@ -8,6 +8,7 @@ import com.ronan.redditclone.domain.Subreddit;
 import com.ronan.redditclone.dto.request.PostRequest;
 import com.ronan.redditclone.dto.response.PostResponse;
 import com.ronan.redditclone.exception.SpringRedditException;
+import com.ronan.redditclone.exception.SubredditNotFoundException;
 import com.ronan.redditclone.mapper.PostMapper;
 import com.ronan.redditclone.repository.PostRepository;
 import com.ronan.redditclone.repository.SubredditRepository;
@@ -53,5 +54,14 @@ public class PostService {
                 .orElseThrow(() -> new SpringRedditException("No subreddit found with ID - " + id));
         PostResponse postResponse = mapper.mapPostToResponse(post);
         return postResponse;
+    }
+
+    @Transactional(readOnly = true)
+    public List<PostResponse> findPostBySubreddit(Long idSubreddit) {
+        Subreddit subreddit = subredditRepository.findById(idSubreddit)
+                .orElseThrow(() -> new SubredditNotFoundException(idSubreddit.toString()));
+
+        List<Post> posts = repository.findAllBySubreddit(subreddit);
+        return posts.stream().map(mapper::mapPostToResponse).collect(Collectors.toList());
     }
 }
