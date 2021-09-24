@@ -22,6 +22,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.AllArgsConstructor;
 
@@ -41,6 +42,7 @@ public class AuthService {
 
     private final JwtProvider jwtProvider;
     
+    @Transactional
     public User signup(RegisterRequest registerRequest) {
         User user = signupDate(registerRequest);
 
@@ -71,6 +73,7 @@ public class AuthService {
                 + "http://localhost:8080/api/auth/accountVerification/" + token));
     }
 
+    @Transactional
     private String generateVerificationToken(User user) {
         String token = UUID.randomUUID().toString();
         VerificationToken verificationToken = new VerificationToken();
@@ -82,12 +85,14 @@ public class AuthService {
         return token;
     }
 
+    @Transactional(readOnly =  true)
     public User verifyAccount(String token) {
         Optional<VerificationToken> verificationToken = verificationTokenRepository.findByToken(token);
         verificationToken.orElseThrow(() -> new SpringRedditException("Invalid Token"));
         return fetchUserAndEnable(verificationToken.get());
     }
 
+    @Transactional
     private User fetchUserAndEnable(VerificationToken verificationToken) {
         String username = verificationToken.getUser().getUsername();
         User user = repository.findByUsername(username).orElseThrow(() -> new SpringRedditException("User not found with name - " + username));
@@ -105,6 +110,7 @@ public class AuthService {
         return new AuthenticationResponse(token, loginRequest.getUsername());
     }
 
+    @Transactional(readOnly =  true)
     public User getCurrentUser() {
         org.springframework.security.core.userdetails.User principal = (org.springframework.security.core.userdetails.User) SecurityContextHolder
                 .getContext().getAuthentication().getPrincipal();

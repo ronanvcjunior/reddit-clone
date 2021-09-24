@@ -1,5 +1,7 @@
 package com.ronan.redditclone.dto.response;
 
+import java.io.Serializable;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,7 +9,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PostResponse {
+public class PostResponse implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     private Long id;
     private String postName;
     private String url;

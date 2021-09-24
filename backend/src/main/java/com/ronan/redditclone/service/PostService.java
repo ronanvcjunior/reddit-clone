@@ -13,6 +13,7 @@ import com.ronan.redditclone.repository.PostRepository;
 import com.ronan.redditclone.repository.SubredditRepository;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.AllArgsConstructor;
 
@@ -28,6 +29,7 @@ public class PostService {
 
     private final PostMapper mapper;
 
+    @Transactional
     public Post save(PostRequest postRequest) {
         String subredditName = postRequest.getSubredditName();
         Subreddit subreddit = subredditRepository.findByName(subredditName)
@@ -38,12 +40,14 @@ public class PostService {
         return post;
     }
 
+    @Transactional(readOnly =  true)
     public List<PostResponse> findAll() {
         List<Post> posts = repository.findAll();
         List<PostResponse> postResponses = posts.stream().map(mapper::mapPostToResponse).collect(Collectors.toList());
         return postResponses;
     }
 
+    @Transactional(readOnly = true)
     public PostResponse findById(Long id) {
         Post post = repository.findById(id)
                 .orElseThrow(() -> new SpringRedditException("No subreddit found with ID - " + id));

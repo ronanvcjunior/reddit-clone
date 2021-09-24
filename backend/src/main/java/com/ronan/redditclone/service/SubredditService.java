@@ -10,6 +10,7 @@ import com.ronan.redditclone.mapper.SubredditMapper;
 import com.ronan.redditclone.repository.SubredditRepository;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.AllArgsConstructor;
 
@@ -21,6 +22,7 @@ public class SubredditService {
     
     private final SubredditMapper mapper;
     
+    @Transactional
     public SubredditDto save(SubredditDto subredditDto) {
         Subreddit subreddit = mapper.mapDtoToSubreddit(subredditDto);
         Subreddit save = repository.save(subreddit);
@@ -28,12 +30,14 @@ public class SubredditService {
         return subredditDto;
     }
 
+    @Transactional(readOnly =  true)
     public List<SubredditDto> findAll() {
         List<Subreddit> subreddits = repository.findAll();
         List<SubredditDto> subredditDtos = subreddits.stream().map(mapper::mapSubredditToDto).collect(Collectors.toList());
         return subredditDtos;
     }
 
+    @Transactional(readOnly = true)
     public SubredditDto findById(Long id) {
         Subreddit subreddit = repository.findById(id)
                 .orElseThrow(() -> new SpringRedditException("No subreddit found with ID - " + id));
@@ -41,6 +45,7 @@ public class SubredditService {
         return subredditDto;
     }
 
+    @Transactional(readOnly = true)
     public SubredditDto findByName(String name) {
         Subreddit subreddit = repository.findByName(name)
                 .orElseThrow(() -> new SpringRedditException("No subreddit found with name - " + name));

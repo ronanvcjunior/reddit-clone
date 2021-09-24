@@ -1,5 +1,7 @@
 package com.ronan.redditclone.dto.request;
 
+import java.io.Serializable;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,7 +9,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PostRequest {
+public class PostRequest implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     private Long postId;
     private String subredditName;
     private String postName;
