@@ -48,4 +48,10 @@ public class PostController {
         List<PostResponse> postResponses = service.findPostBySubreddit(idSubreddit);
         return ResponseEntity.ok().body(postResponses);
     }
+
+    @GetMapping(path = "/by-user/{username}")
+    public ResponseEntity<List<PostResponse>> getPostByUser(@PathVariable String username) {
+        List<PostResponse> postResponses = service.findPostByUsername(username);
+        return ResponseEntity.ok().body(postResponses);
+    }
 }
