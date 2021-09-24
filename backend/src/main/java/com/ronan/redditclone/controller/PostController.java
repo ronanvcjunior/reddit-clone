@@ -26,8 +26,8 @@ public class PostController {
     private final PostService service;
     
     @PostMapping
-    public ResponseEntity<Post> createPost(@RequestBody PostRequest postRequest) {
-        Post save = service.save(postRequest);
+    public ResponseEntity<PostResponse> createPost(@RequestBody PostRequest postRequest) {
+        PostResponse save = service.save(postRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(save);
     }
 

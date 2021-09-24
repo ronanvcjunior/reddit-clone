@@ -19,12 +19,14 @@ import lombok.AllArgsConstructor;
 public class SubredditService {
 
     private final SubredditRepository repository;
+
+    private final AuthService authService;
     
     private final SubredditMapper mapper;
     
     @Transactional
     public SubredditDto save(SubredditDto subredditDto) {
-        Subreddit subreddit = mapper.mapDtoToSubreddit(subredditDto);
+        Subreddit subreddit = mapper.mapDtoToSubreddit(subredditDto, authService.getCurrentUser());
         Subreddit save = repository.save(subreddit);
         subredditDto.setId(save.getId());
         return subredditDto;

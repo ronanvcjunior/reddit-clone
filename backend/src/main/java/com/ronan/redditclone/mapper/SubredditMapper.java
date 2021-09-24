@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.ronan.redditclone.domain.Post;
 import com.ronan.redditclone.domain.Subreddit;
+import com.ronan.redditclone.domain.User;
 import com.ronan.redditclone.dto.SubredditDto;
 
 @Mapper(componentModel = "spring")
@@ -22,5 +23,7 @@ public interface SubredditMapper {
 
     @InheritInverseConfiguration
     @Mapping(target = "posts", ignore = true)
-    Subreddit mapDtoToSubreddit(SubredditDto subredditDto);
+    @Mapping(target = "createdDate", expression = "java(java.time.Instant.now())")
+    @Mapping(target = "user", source = "user")
+    Subreddit mapDtoToSubreddit(SubredditDto subredditDto, User user);
 }
