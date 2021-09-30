@@ -2,7 +2,6 @@ package com.ronan.redditclone.controller;
 
 import java.util.List;
 
-import com.ronan.redditclone.domain.Post;
 import com.ronan.redditclone.dto.request.PostRequest;
 import com.ronan.redditclone.dto.response.PostResponse;
 import com.ronan.redditclone.service.PostService;
