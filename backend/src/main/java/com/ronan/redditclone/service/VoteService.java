@@ -49,6 +49,14 @@ public class VoteService {
         if(voteByPostAndUser.isPresent() && voteByPostAndUser.get().getVoteType().equals(voteDto.getVoteType())) {
             throw new SpringRedditException("You have already " + voteDto.getVoteType() + "'d for this post");
         }
+
+        if (voteByPostAndUser.isPresent() && !voteByPostAndUser.get().getVoteType().equals(voteDto.getVoteType())) {
+            if (UPVOTE.equals(voteDto.getVoteType())) {
+                post.setVoteCount(post.getVoteCount() + 1);
+            } else {
+                post.setVoteCount(post.getVoteCount() - 1);
+            }
+        }
     }
 
     private void voteUpOrDown(VoteDto voteDto, Post post) {
