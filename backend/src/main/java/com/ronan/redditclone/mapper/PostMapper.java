@@ -1,5 +1,7 @@
 package com.ronan.redditclone.mapper;
 
+import com.github.marlonlom.utilities.timeago.TimeAgo;
+import com.github.marlonlom.utilities.timeago.TimeAgoMessages;
 import com.ronan.redditclone.domain.Post;
 import com.ronan.redditclone.domain.Subreddit;
 import com.ronan.redditclone.domain.User;
@@ -15,9 +17,13 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import lombok.extern.log4j.Log4j2;
+
+import java.util.Locale;
 import java.util.Optional;
 
 @Mapper(componentModel = "spring")
+@Log4j2
 public abstract class PostMapper {
 
     @Autowired
@@ -40,12 +46,21 @@ public abstract class PostMapper {
     @Mapping(target = "subredditName", source = "subreddit.name")
     @Mapping(target = "userName", source = "user.username")
     @Mapping(target = "commentCount", expression = "java(commentCount(post))")
+    @Mapping(target = "duration", expression = "java(getDuration(post))")
     @Mapping(target = "upVote", expression = "java(isPostUpVoted(post))")
     @Mapping(target = "downVote", expression = "java(isPostDownVoted(post))")
     public abstract PostResponse mapPostToResponse(Post post);
 
     Integer commentCount(Post post) {
         return commentRepository.findByPost(post).size();
+    }
+
+    String getDuration(Post post) {
+        Locale LocaleBylanguageTag = Locale.forLanguageTag("pt");
+        TimeAgoMessages messages = new TimeAgoMessages.Builder().withLocale(LocaleBylanguageTag).build();
+        log.info(messages);
+        log.info(TimeAgo.using(post.getCreatedDate().toEpochMilli(), messages));
+        return TimeAgo.using(post.getCreatedDate().toEpochMilli(), messages);
     }
 
     boolean isPostUpVoted(Post post) {

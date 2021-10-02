@@ -2,6 +2,8 @@ package com.ronan.redditclone.service;
 
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import com.ronan.redditclone.domain.Post;
 import com.ronan.redditclone.domain.Vote;
 import com.ronan.redditclone.dto.VoteDto;
@@ -29,6 +31,7 @@ public class VoteService {
 
     private final VoteMapper mapper;
 
+    @Transactional
     public VoteDto vote(VoteDto voteDto) {
         Post post = postRepository.findById(voteDto.getPostId())
                 .orElseThrow(() -> new PostNotFoundException("Post Not Found with ID - " + voteDto.getPostId()));
