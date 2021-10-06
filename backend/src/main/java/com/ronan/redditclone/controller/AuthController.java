@@ -3,6 +3,7 @@ package com.ronan.redditclone.controller;
 import javax.validation.Valid;
 
 import com.ronan.redditclone.domain.User;
+import com.ronan.redditclone.dto.UserDto;
 import com.ronan.redditclone.dto.request.LoginRequest;
 import com.ronan.redditclone.dto.request.RefreshTokenRequest;
 import com.ronan.redditclone.dto.request.RegisterRequest;
@@ -67,4 +68,9 @@ public class AuthController {
         return ResponseEntity.ok().body(user);
     }
     
+    @GetMapping("/user/{username}")
+    public ResponseEntity<UserDto> getUserByUsername(@PathVariable String username) {
+        UserDto user = service.findByUsername(username);
+        return ResponseEntity.ok().body(user);
+    }
 }

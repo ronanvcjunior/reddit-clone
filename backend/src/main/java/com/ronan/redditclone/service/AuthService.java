@@ -7,6 +7,7 @@ import java.util.UUID;
 import com.ronan.redditclone.domain.NotificationEmail;
 import com.ronan.redditclone.domain.User;
 import com.ronan.redditclone.domain.VerificationToken;
+import com.ronan.redditclone.dto.UserDto;
 import com.ronan.redditclone.dto.request.LoginRequest;
 import com.ronan.redditclone.dto.request.RefreshTokenRequest;
 import com.ronan.redditclone.dto.request.RegisterRequest;
@@ -142,6 +143,16 @@ public class AuthService {
                 .orElseThrow(() -> new UsernameNotFoundException("User name not found - " + principalPrincipal));
 
         return user;
+    }
+
+    @Transactional(readOnly = true)
+    public UserDto findByUsername(String username) {
+        User user = repository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User name not found - " + username));
+
+        UserDto userDto = new UserDto();
+        userDto.setUsername(user.getUsername());
+        return userDto;
     }
 
     public boolean isLoggedIn() {
