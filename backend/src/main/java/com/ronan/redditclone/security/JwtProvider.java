@@ -9,14 +9,11 @@ import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
-import java.time.Instant;
-import java.util.Date;
 
 import javax.annotation.PostConstruct;
 
 import com.ronan.redditclone.exception.SpringRedditException;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
@@ -27,9 +24,6 @@ import io.jsonwebtoken.Jwts;
 public class JwtProvider {
 
     private KeyStore keyStore;
-
-    @Value("${jwt.expiration.time}")
-    private Long jwtExpirationInMillis;
 
     @PostConstruct
     public void init() {
@@ -49,16 +43,7 @@ public class JwtProvider {
         return Jwts.builder()
         .setSubject(principal.getUsername())
         .signWith(getPrivateKey())
-        .setExpiration(Date.from(Instant.now().plusMillis(jwtExpirationInMillis)))
         .compact();
-    }
-
-    public String generateTokenWithUserName(String username) {
-        return Jwts.builder()
-                .setSubject(username)
-                .setIssuedAt(Date.from(Instant.now()))
-                .signWith(getPrivateKey())
-                .setExpiration(Date.from(Instant.now().plusMillis(jwtExpirationInMillis))).compact();
     }
 
     private PrivateKey getPrivateKey() {
@@ -99,9 +84,5 @@ public class JwtProvider {
         var claims = parser.parseClaimsJws(token);
 
         return claims.getBody().getSubject();
-    }
-
-    public Long getJwtExpirationInMillis() {
-        return this.jwtExpirationInMillis;
     }
 }
