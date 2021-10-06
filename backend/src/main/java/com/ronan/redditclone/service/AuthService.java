@@ -8,6 +8,7 @@ import com.ronan.redditclone.domain.NotificationEmail;
 import com.ronan.redditclone.domain.User;
 import com.ronan.redditclone.domain.VerificationToken;
 import com.ronan.redditclone.dto.request.LoginRequest;
+import com.ronan.redditclone.dto.request.RefreshTokenRequest;
 import com.ronan.redditclone.dto.request.RegisterRequest;
 import com.ronan.redditclone.dto.response.AuthenticationResponse;
 import com.ronan.redditclone.exception.SpringRedditException;
@@ -42,6 +43,8 @@ public class AuthService {
     private final AuthenticationManager authenticationManager;
 
     private final JwtProvider jwtProvider;
+    
+    private final RefreshTokenService refreshTokenService;
     
     @Transactional
     public User signup(RegisterRequest registerRequest) {
@@ -108,7 +111,25 @@ public class AuthService {
         Authentication authentication = authenticationManager.authenticate(usernamePasswordAuthenticationToken);
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String token = jwtProvider.generateToken(authentication);
-        return new AuthenticationResponse(token, loginRequest.getUsername());
+
+        // return new AuthenticationResponse(token, loginRequest.getUsername());
+        return AuthenticationResponse.builder()
+                .authenticationToken(token)
+                .refreshToken(refreshTokenService.generateRefreshToken().getToken())
+                .expiresAt(Instant.now().plusMillis(jwtProvider.getJwtExpirationInMillis()))
+                .username(loginRequest.getUsername())
+                .build();
+    }
+
+    public AuthenticationResponse refreshToken(RefreshTokenRequest refreshTokenRequest) {
+        refreshTokenService.validateRefreshToken(refreshTokenRequest.getRefreshToken());
+        String token = jwtProvider.generateTokenWithUserName(refreshTokenRequest.getUsername());
+        return AuthenticationResponse.builder()
+                .authenticationToken(token)
+                .refreshToken(refreshTokenRequest.getRefreshToken())
+                .expiresAt(Instant.now().plusMillis(jwtProvider.getJwtExpirationInMillis()))
+                .username(refreshTokenRequest.getUsername())
+                .build();
     }
 
     @Transactional(readOnly =  true)

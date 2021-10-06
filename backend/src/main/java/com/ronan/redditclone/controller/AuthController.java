@@ -1,10 +1,14 @@
 package com.ronan.redditclone.controller;
 
+import javax.validation.Valid;
+
 import com.ronan.redditclone.domain.User;
 import com.ronan.redditclone.dto.request.LoginRequest;
+import com.ronan.redditclone.dto.request.RefreshTokenRequest;
 import com.ronan.redditclone.dto.request.RegisterRequest;
 import com.ronan.redditclone.dto.response.AuthenticationResponse;
 import com.ronan.redditclone.service.AuthService;
+import com.ronan.redditclone.service.RefreshTokenService;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +28,8 @@ import lombok.AllArgsConstructor;
 public class AuthController {
 
     private final AuthService service;
+
+    private final RefreshTokenService refreshTokenService;
     
     @PostMapping("/signup")
     public ResponseEntity<User> signup(@RequestBody RegisterRequest registerRequest) {
@@ -44,7 +50,18 @@ public class AuthController {
         return ResponseEntity.ok().body(authenticationResponse);
     }
 
-    @GetMapping(value="/user")
+    @PostMapping("/refresh/token")
+    public AuthenticationResponse refreshTokens(@Valid @RequestBody RefreshTokenRequest refreshTokenRequest) {
+        return service.refreshToken(refreshTokenRequest);
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<String> logout(@Valid @RequestBody RefreshTokenRequest refreshTokenRequest) {
+        refreshTokenService.deleteRefreshToken(refreshTokenRequest.getRefreshToken());
+        return ResponseEntity.ok().body("Refresh Token Deleted Successfully!!");
+    }
+
+    @GetMapping("/user")
     public ResponseEntity<User> getCurrentUser() {
         User user = service.getCurrentUser();
         return ResponseEntity.ok().body(user);
