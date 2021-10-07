@@ -11,6 +11,11 @@ body {
 }
 
 body {
+  background-color: #dae0e6;
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
 }
