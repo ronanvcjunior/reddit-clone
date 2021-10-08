@@ -1,8 +1,10 @@
 package com.ronan.redditclone.service;
 
 import java.time.Instant;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import com.ronan.redditclone.domain.NotificationEmail;
 import com.ronan.redditclone.domain.User;
@@ -13,6 +15,7 @@ import com.ronan.redditclone.dto.request.RefreshTokenRequest;
 import com.ronan.redditclone.dto.request.RegisterRequest;
 import com.ronan.redditclone.dto.response.AuthenticationResponse;
 import com.ronan.redditclone.exception.SpringRedditException;
+import com.ronan.redditclone.mapper.UserMapper;
 import com.ronan.redditclone.repository.UserRepository;
 import com.ronan.redditclone.repository.VerificationTokenRepository;
 import com.ronan.redditclone.security.JwtProvider;
@@ -46,6 +49,8 @@ public class AuthService {
     private final JwtProvider jwtProvider;
     
     private final RefreshTokenService refreshTokenService;
+
+    private final UserMapper mapper;
     
     @Transactional
     public User signup(RegisterRequest registerRequest) {
@@ -146,13 +151,23 @@ public class AuthService {
     }
 
     @Transactional(readOnly = true)
-    public UserDto findByUsername(String username) {
+    public Boolean checkForUsername(String username) {
         User user = repository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User name not found - " + username));
+                .orElse(null);
 
-        UserDto userDto = new UserDto();
-        userDto.setUsername(user.getUsername());
-        return userDto;
+        if (user == null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    @Transactional(readOnly = true)
+    public List<UserDto> findAllUsers() {
+        List<User> users = repository.findAll();
+
+        List<UserDto> usersDto = users.stream().map(mapper::mapUserToDto).collect(Collectors.toList());
+        return usersDto;
     }
 
     public boolean isLoggedIn() {

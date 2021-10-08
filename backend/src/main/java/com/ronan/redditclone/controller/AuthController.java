@@ -1,5 +1,7 @@
 package com.ronan.redditclone.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import com.ronan.redditclone.domain.User;
@@ -69,8 +71,14 @@ public class AuthController {
     }
     
     @GetMapping("/user/{username}")
-    public ResponseEntity<UserDto> getUserByUsername(@PathVariable String username) {
-        UserDto user = service.findByUsername(username);
-        return ResponseEntity.ok().body(user);
+    public ResponseEntity<Boolean> checkForUsername (@PathVariable String username) {
+        Boolean userConflict = service.checkForUsername(username);
+        return ResponseEntity.ok().body(userConflict);
+    }
+
+    @GetMapping("/users")
+    public ResponseEntity<List<UserDto>> findAllUsers() {
+        List<UserDto> users = service.findAllUsers();
+        return ResponseEntity.ok().body(users);
     }
 }

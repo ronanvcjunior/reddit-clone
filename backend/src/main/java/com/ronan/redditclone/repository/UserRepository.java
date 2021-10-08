@@ -1,5 +1,6 @@
 package com.ronan.redditclone.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.ronan.redditclone.domain.User;
@@ -11,5 +12,4 @@ import org.springframework.stereotype.Repository;
 public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findByUsername(String username);
-    
 }
