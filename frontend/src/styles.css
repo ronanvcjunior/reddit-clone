@@ -15,7 +15,6 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
-
-input.ng-invalid.ng-touched {
-  border: 1px solid red;
+.mat-dialog-container {
+  padding: 0px !important;
 }

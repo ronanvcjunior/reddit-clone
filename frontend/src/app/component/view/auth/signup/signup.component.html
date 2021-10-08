@@ -1,0 +1,42 @@
+<main>
+  <div class="image"></div>
+  <div class="container">
+    <h2> Cadastrar-se </h2>
+    <span class="termos">Ao continuar, você concorda com nossos Termos de Uso e nossa Política de Privacidade.</span>
+
+    <form class="form" [formGroup]="signupForm" (submit)="signup()">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label> Nome do usuário
+        </mat-label>
+        <input matInput formControlName="username" required>
+        <mat-error *ngIf="signupForm.controls.username.touched && signupForm.controls.username.invalid">
+          <span *ngIf="signupForm.controls.username.errors!.required">Este campo é obrigatório.</span>
+          <span *ngIf="signupForm.controls.username.errors!.WhiteNotAllowed">Não pode ter espaços em branco.</span>
+          <span *ngIf="signupForm.controls.username.errors!.usernameExists">teste.</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label> Email
+        </mat-label>
+        <input matInput formControlName="email" required>
+        <mat-error *ngIf="signupForm.controls.email.touched && signupForm.controls.email.invalid">
+          <span *ngIf="signupForm.controls.email.errors!.required">Este campo é obrigatório.</span>
+          <span *ngIf="signupForm.controls.email.errors!.email">Email inválido.</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label> Sennha
+        </mat-label>
+        <input matInput formControlName="password" type="password">
+        <mat-error *ngIf="signupForm.controls.password.touched && signupForm.controls.password.invalid">
+          <span *ngIf="signupForm.controls.password.errors!.required">Este campo é obrigatório.</span>
+          <span *ngIf="signupForm.controls.password.errors!.WhiteNotAllowed">Não pode ter espaços em branco.</span>
+        </mat-error>
+      </mat-form-field>
+      <button mat-raised-button type="submit" (click)="closeDialog()">Cadastrar</button>
+    </form>
+  </div>
+  <a class="close" (click)="closeDialog()">
+      <mat-icon aria-hidden="false" class="icon_close">clear</mat-icon>
+  </a>
+</main>
