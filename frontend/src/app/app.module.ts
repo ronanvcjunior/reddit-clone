@@ -17,11 +17,13 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { HeaderComponent } from './component/template/header/header.component';
 import { SignupComponent } from './component/view/auth/signup/signup.component';
+import { LoginComponent } from './component/view/auth/login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    SignupComponent
+    SignupComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

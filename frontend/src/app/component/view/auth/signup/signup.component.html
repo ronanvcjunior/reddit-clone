@@ -33,8 +33,10 @@
           <span *ngIf="signupForm.controls.password.errors!.WhiteNotAllowed">Não pode ter espaços em branco.</span>
         </mat-error>
       </mat-form-field>
-      <button mat-raised-button type="submit" (click)="closeDialog()">Cadastrar</button>
+      <button mat-raised-button type="submit">Cadastrar</button>
     </form>
+
+    <span class="termos">Já está no Reddit? <a class="login" (click)="openLogin()">Entrar</a> </span>
   </div>
   <a class="close" (click)="closeDialog()">
       <mat-icon aria-hidden="false" class="icon_close">clear</mat-icon>

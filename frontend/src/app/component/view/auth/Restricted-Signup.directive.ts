@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { waitForAsync } from "@angular/core/testing";
 import { AbstractControl, AsyncValidatorFn, ValidationErrors } from "@angular/forms";
 import { ValidatorFn } from "@angular/forms";
 import { Observable, of } from "rxjs";
@@ -27,14 +28,17 @@ export class ValidationSignup {
     usernameExists(username: string): Observable<boolean> {
         this.listUsers()
         return of(username).pipe(
-            delay(1000),
+            delay(500),
             map((username) => {
                 for(var chave in this.users){
                     if (this.users[chave].username.toString() == username) {
+                        console.log(true);
+                        
                         return true
                     }
                     
                 }
+                console.log(false);
                 
                 return false
             })

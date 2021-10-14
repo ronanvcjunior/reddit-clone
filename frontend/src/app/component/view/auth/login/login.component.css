@@ -43,15 +43,15 @@ mat-form-field {
 }
 
 button {
-    background-color: #1484d7;
-    color: #fff;
-    width: 280px;
-    border-radius: 36px;
-    box-shadow: none;
+  background-color: #1484d7;
+  color: #fff;
+  width: 280px;
+  border-radius: 36px;
+  box-shadow: none;
 }
 
 button:hover {
-    box-shadow: inset 0 0 100px rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 0 100px rgba(255, 255, 255, 0.1);
 }
 
 .close {
@@ -74,7 +74,7 @@ button:hover {
   color: #878a8c;
 }
 
-.login {
+.signup {
   text-transform: uppercase;
   font-weight: 700;
   color: #1986d7;

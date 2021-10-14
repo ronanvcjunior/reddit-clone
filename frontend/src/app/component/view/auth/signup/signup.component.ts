@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { AuthService } from '../auth.service';
 import { SignupRequestPayload } from './signup.request.payload';
 import { checkWhitespace } from '../Restricted-Signup.directive';
 import { ValidationSignup } from '../Restricted-Signup.directive';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-signup',
@@ -16,14 +17,10 @@ export class SignupComponent implements OnInit {
   signupRequestPayload!: SignupRequestPayload
 
   signupForm!: FormGroup
-
-  test = 'user'
-
-  users: String[] = []
   
-  
+  isDisabled: boolean = true
 
-  constructor(private formBuilder: FormBuilder, public dialog: MatDialogRef<SignupComponent>, private service: AuthService, private validation: ValidationSignup) {
+  constructor(private formBuilder: FormBuilder, public dialog: MatDialogRef<SignupComponent>, public dialogLogin: MatDialog, private service: AuthService, private validation: ValidationSignup) {
     this.signupRequestPayload = {
       username: '',
       email: '',
@@ -36,16 +33,8 @@ export class SignupComponent implements OnInit {
       username: [null, [Validators.required, checkWhitespace()], [this.validation.usernameUniqueValidator()]],
       email: [null, [Validators.required, Validators.email]],
       password: [null, [Validators.required, checkWhitespace()]]
-    }, { updateOn: 'blur' })
+    }, { updateOn: 'blur', asyncValidator: this.validation.usernameUniqueValidator()})
 
-    // this.service.findAllUsers().subscribe(resposta => {
-    //   this.users = resposta
-    //   console.log(this.users);
-    //   console.log(this.users.includes('test2'));
-      
-    //   console.log(resposta);
-      
-    // })
     
   }
 
@@ -61,6 +50,17 @@ export class SignupComponent implements OnInit {
         .subscribe(data => {
           console.log(data)
         })
+
+    this.closeDialog()
+  }
+
+  openLogin(): void {
+    this.dialog.close()
+    
+    const DIALOG_CONFIG = new MatDialogConfig()
+    DIALOG_CONFIG.disableClose = true
+    DIALOG_CONFIG.autoFocus = true
+    this.dialogLogin.open(LoginComponent, DIALOG_CONFIG)
   }
 
   closeDialog(): void {

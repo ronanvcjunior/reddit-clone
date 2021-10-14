@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { delay } from 'rxjs/operators';
 import { SignupRequestPayload } from './signup/signup.request.payload';
+
+import { LoginRequestPayload } from './login/login.request.payload';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,12 @@ export class AuthService {
 
   signup(signupRequestPayload: SignupRequestPayload): Observable<any> {
     const url = `${this.baseUrl}/auth/signup`
-    return this.http.post(url, signupRequestPayload, {responseType: 'text'})
+    return this.http.post(url, signupRequestPayload, { responseType: 'text' })
+  }
+
+  login(loginRequestPayload: LoginRequestPayload): Observable<any> {
+    const url = `${this.baseUrl}/auth/login`
+    return this.http.post(url, loginRequestPayload, { responseType: 'text' })
   }
 
   checkForUsername(username: String): Observable<any> {

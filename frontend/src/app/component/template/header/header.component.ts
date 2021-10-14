@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { LoginComponent } from '../../view/auth/login/login.component';
 import { SignupComponent } from '../../view/auth/signup/signup.component';
 
 @Component({
@@ -22,7 +23,7 @@ export class HeaderComponent implements OnInit {
     const DIALOG_CONFIG = new MatDialogConfig()
     DIALOG_CONFIG.disableClose = true
     DIALOG_CONFIG.autoFocus = true
-    DIALOG_CONFIG.width = "60%"
+    this.dialog.open(LoginComponent, DIALOG_CONFIG)
   }
    
   openSignup(): void {
