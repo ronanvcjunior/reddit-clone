@@ -39,7 +39,7 @@ export class SignupComponent implements OnInit {
   }
 
   signup() {
-    if (!this.signupForm.valid) {
+    if (this.signupForm.invalid) {
       return;
     }
     this.signupRequestPayload.username = this.signupForm.get('username'.trim())?.value

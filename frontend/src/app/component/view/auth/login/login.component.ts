@@ -28,7 +28,6 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
       username: [null, [Validators.required]],
-      email: [null, [Validators.required]],
       password: [null, [Validators.required]]
     })
 
@@ -36,18 +35,21 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    if (!this.loginForm.valid) {
+    if (this.loginForm.invalid) {
       return;
     }
     this.loginRequestPayload.username = this.loginForm.get('username'.trim())?.value
     this.loginRequestPayload.password = this.loginForm.get('password'.trim())?.value
 
+    
     this.service.login(this.loginRequestPayload)
       .subscribe(data => {
         console.log(data)
-      })
 
-    this.closeDialog()
+        if (data) {
+          this.closeDialog()
+        }
+      })
   }
 
   openSignup(): void {
