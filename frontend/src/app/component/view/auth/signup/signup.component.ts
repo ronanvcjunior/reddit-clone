@@ -20,7 +20,13 @@ export class SignupComponent implements OnInit {
   
   isDisabled: boolean = true
 
-  constructor(private formBuilder: FormBuilder, public dialog: MatDialogRef<SignupComponent>, public dialogLogin: MatDialog, private service: AuthService, private validation: ValidationSignup) {
+  constructor(
+        private formBuilder: FormBuilder, 
+        public dialog: MatDialogRef<SignupComponent>, 
+        public dialogLogin: MatDialog, 
+        private service: AuthService, 
+        private validation: ValidationSignup) {
+
     this.signupRequestPayload = {
       username: '',
       email: '',
@@ -49,9 +55,12 @@ export class SignupComponent implements OnInit {
     this.service.signup(this.signupRequestPayload)
         .subscribe(data => {
           console.log(data)
+          this.closeDialog()
+          this.service.mensagem('Registro efetudado com Sucesso! Confirme o seu e-mail!')
+        }, err => {
+          this.service.mensagemWithTime('Ocorreu um erro ao efetuar o seu registro! Tente novamente mais tarde!', 10000)
+          console.log(err)
         })
-
-    this.closeDialog()
   }
 
   openLogin(): void {

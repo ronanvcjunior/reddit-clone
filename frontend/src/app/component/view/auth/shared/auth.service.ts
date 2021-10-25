@@ -7,6 +7,7 @@ import { LoginRequestPayload } from '../login/login.request.payload';
 import { map } from 'rxjs/operators';
 import { LocalStorageService } from 'ngx-webstorage';
 import { LoginResponse } from '../login/login.response.payload';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,10 @@ export class AuthService {
 
   baseUrl: String = 'http://localhost:8080/api'
 
-  constructor(private http: HttpClient, private localStorage: LocalStorageService) { }
+  constructor(
+        private http: HttpClient, 
+        private localStorage: LocalStorageService,
+        private _snack: MatSnackBar) { }
 
   signup(signupRequestPayload: SignupRequestPayload): Observable<any> {
     const url = `${this.baseUrl}/auth/signup`
@@ -42,5 +46,20 @@ export class AuthService {
   findAllUsers(): Observable<any> {
     const url = `${this.baseUrl}/auth/users`
     return this.http.get(url)
+  }
+
+  mensagem(str: String): void {
+    this._snack.open(`${str}`, 'OK', {
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom'
+    })
+  }
+
+  mensagemWithTime(str: String, duration: number): void {
+    this._snack.open(`${str}`, 'OK', {
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom',
+      duration: duration
+    })
   }
 }

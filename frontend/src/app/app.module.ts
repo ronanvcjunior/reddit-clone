@@ -15,6 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { HeaderComponent } from './component/template/header/header.component';
 import { SignupComponent } from './component/view/auth/signup/signup.component';
@@ -40,6 +41,7 @@ import { LoginComponent } from './component/view/auth/login/login.component';
     MatDialogModule,
     MatButtonModule,
     MatProgressSpinnerModule,
+    MatSnackBarModule,
     NgxWebstorageModule.forRoot()
   ],
   providers: [],

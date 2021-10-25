@@ -18,7 +18,12 @@ export class LoginComponent implements OnInit {
 
   isDisabled: boolean = true
 
-  constructor(private formBuilder: FormBuilder, public dialog: MatDialogRef<LoginComponent>, public dialogSignup: MatDialog, private service: AuthService) {
+  constructor(
+        private formBuilder: FormBuilder, 
+        public dialog: MatDialogRef<LoginComponent>, 
+        public dialogSignup: MatDialog, 
+        private service: AuthService) {
+
     this.loginRequestPayload = {
       username: '',
       password: ''
@@ -45,10 +50,12 @@ export class LoginComponent implements OnInit {
     this.service.login(this.loginRequestPayload)
       .subscribe(data => {
         console.log(data)
-
-        if (data) {
-          this.closeDialog()
-        }
+        this.closeDialog()
+        this.service.mensagemWithTime('Login efetudado com Sucesso!', 3000)
+      }, err => {
+        this.service.mensagemWithTime('Ocorreu um erro ao efetuar o seu login! Tente novamente!', 10000)
+        console.log("erro:")
+        console.log(err)
       })
   }
 
