@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { SignupRequestPayload } from './signup/signup.request.payload';
+import { SignupRequestPayload } from '../signup/signup.request.payload';
 
-import { LoginRequestPayload } from './login/login.request.payload';
+import { LoginRequestPayload } from '../login/login.request.payload';
 import { map } from 'rxjs/operators';
 import { LocalStorageService } from 'ngx-webstorage';
-import { LoginResponse } from './login/login.response.payload';
+import { LoginResponse } from '../login/login.response.payload';
 
 @Injectable({
   providedIn: 'root'

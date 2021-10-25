@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../shared/auth.service';
 import { LoginRequestPayload } from '../login/login.request.payload';
 import { SignupComponent } from '../signup/signup.component';
 

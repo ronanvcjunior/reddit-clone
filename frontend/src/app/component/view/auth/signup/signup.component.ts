@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../shared/auth.service';
 import { SignupRequestPayload } from './signup.request.payload';
 import { checkWhitespace } from '../Restricted-Signup.directive';
 import { ValidationSignup } from '../Restricted-Signup.directive';

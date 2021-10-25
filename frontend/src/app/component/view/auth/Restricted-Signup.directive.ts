@@ -4,7 +4,7 @@ import { AbstractControl, AsyncValidatorFn, ValidationErrors } from "@angular/fo
 import { ValidatorFn } from "@angular/forms";
 import { Observable, of } from "rxjs";
 import { catchError, delay, map } from "rxjs/operators";
-import { AuthService } from "./auth.service";
+import { AuthService } from "./shared/auth.service";
 import { SignupUsernames } from "./signupUsernames";
 
 @Injectable({
