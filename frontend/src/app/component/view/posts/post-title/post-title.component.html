@@ -2,13 +2,7 @@
   <div class="post" *ngFor="let post of posts$">
 
     <div class="votebox">
-      <span class="box-upvote">
-        <mat-icon class="upvote">arrow_upward</mat-icon>
-      </span>
-      <span class="votecount">{{post.voteCount}}</span>
-      <span class="box-downvote">
-        <mat-icon class="downvote">arrow_downward</mat-icon>
-      </span>
+      <app-vote-button [post]="post"></app-vote-button>
     </div>
 
     <div class="post-info">

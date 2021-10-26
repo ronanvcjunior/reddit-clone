@@ -25,6 +25,7 @@ import { TokenInterceptor } from './util/token-interceptor';
 import { HomeComponent } from './component/template/home/home.component';
 import { SideBarComponent } from './component/template/side-bar/side-bar.component';
 import { PostTitleComponent } from './component/view/posts/post-title/post-title.component';
+import { VoteButtonComponent } from './component/view/vote/vote-button/vote-button.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { PostTitleComponent } from './component/view/posts/post-title/post-title
     LoginComponent,
     HomeComponent,
     SideBarComponent,
-    PostTitleComponent
+    PostTitleComponent,
+    VoteButtonComponent
   ],
   imports: [
     BrowserModule,
