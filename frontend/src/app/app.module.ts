@@ -26,6 +26,7 @@ import { HomeComponent } from './component/template/home/home.component';
 import { SideBarComponent } from './component/template/side-bar/side-bar.component';
 import { PostTitleComponent } from './component/view/posts/post-title/post-title.component';
 import { VoteButtonComponent } from './component/view/vote/vote-button/vote-button.component';
+import { SubredditSideBarComponent } from './component/view/subreddit/subreddit-side-bar/subreddit-side-bar.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { VoteButtonComponent } from './component/view/vote/vote-button/vote-butt
     HomeComponent,
     SideBarComponent,
     PostTitleComponent,
-    VoteButtonComponent
+    VoteButtonComponent,
+    SubredditSideBarComponent
   ],
   imports: [
     BrowserModule,
