@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +20,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HeaderComponent } from './component/template/header/header.component';
 import { SignupComponent } from './component/view/auth/signup/signup.component';
 import { LoginComponent } from './component/view/auth/login/login.component';
+
+import { TokenInterceptor } from './util/token-interceptor';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +47,14 @@ import { LoginComponent } from './component/view/auth/login/login.component';
     MatSnackBarModule,
     NgxWebstorageModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

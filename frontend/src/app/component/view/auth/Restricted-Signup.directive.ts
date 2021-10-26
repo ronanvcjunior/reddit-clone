@@ -20,7 +20,7 @@ export class ValidationSignup {
     listUsers(): void {
         this.service.findAllUsers().subscribe(resposta => {
             this.users = resposta
-            console.log(this.users);
+            // console.log(this.users);
             
         })
     }
@@ -32,13 +32,13 @@ export class ValidationSignup {
             map((username) => {
                 for(var chave in this.users){
                     if (this.users[chave].username.toString() == username) {
-                        console.log(true);
+                        // console.log(true);
                         
                         return true
                     }
                     
                 }
-                console.log(false);
+                // console.log(false);
                 
                 return false
             })

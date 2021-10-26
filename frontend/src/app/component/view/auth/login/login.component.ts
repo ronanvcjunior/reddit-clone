@@ -49,13 +49,13 @@ export class LoginComponent implements OnInit {
     
     this.service.login(this.loginRequestPayload)
       .subscribe(data => {
-        console.log(data)
+        // console.log(data)
         this.closeDialog()
         this.service.mensagemWithTime('Login efetudado com Sucesso!', 3000)
       }, err => {
         this.service.mensagemWithTime('Ocorreu um erro ao efetuar o seu login! Tente novamente!', 10000)
-        console.log("erro:")
-        console.log(err)
+        // console.log("erro:")
+        // console.log(err)
       })
   }
 

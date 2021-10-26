@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { SignupRequestPayload } from '../signup/signup.request.payload';
 
 import { LoginRequestPayload } from '../login/login.request.payload';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { LocalStorageService } from 'ngx-webstorage';
 import { LoginResponse } from '../login/login.response.payload';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -61,5 +61,40 @@ export class AuthService {
       verticalPosition: 'bottom',
       duration: duration
     })
+  }
+
+  refreshToken() {
+    console.log("refreshToken1")
+    
+    const url = `${this.baseUrl}/auth/refresh/token`
+
+    const refreshTokenPayload = {
+      refreshToken: this.getRefreshToken(),
+      username: this.getUserName()
+    }
+    return this.http.post<LoginResponse>(url,
+      refreshTokenPayload)
+      .pipe(tap(response => {
+        console.log("refreshToken2")
+        console.log(response)
+        this.localStorage.store('authenticationToken', response.authenticationToken);
+        this.localStorage.store('expiresAt', response.expiresAt);
+      }));
+  }
+
+  getJwtToken() {
+    return this.localStorage.retrieve('authenticationToken');
+  }
+
+  getRefreshToken() {
+    return this.localStorage.retrieve('refreshToken');
+  }
+
+  getUserName() {
+    return this.localStorage.retrieve('username');
+  }
+
+  getExpirationTime() {
+    return this.localStorage.retrieve('expiresAt');
   }
 }
