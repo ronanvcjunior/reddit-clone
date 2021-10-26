@@ -23,6 +23,8 @@ import { LoginComponent } from './component/view/auth/login/login.component';
 
 import { TokenInterceptor } from './util/token-interceptor';
 import { HomeComponent } from './component/template/home/home.component';
+import { SideBarComponent } from './component/template/side-bar/side-bar.component';
+import { PostTitleComponent } from './component/view/posts/post-title/post-title.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { HomeComponent } from './component/template/home/home.component';
     HeaderComponent,
     SignupComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    SideBarComponent,
+    PostTitleComponent
   ],
   imports: [
     BrowserModule,
