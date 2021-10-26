@@ -22,13 +22,15 @@ import { SignupComponent } from './component/view/auth/signup/signup.component';
 import { LoginComponent } from './component/view/auth/login/login.component';
 
 import { TokenInterceptor } from './util/token-interceptor';
+import { HomeComponent } from './component/template/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     SignupComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

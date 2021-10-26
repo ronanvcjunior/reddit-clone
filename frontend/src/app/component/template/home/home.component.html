@@ -1,0 +1,89 @@
+<!-- <div class="reddit-body">
+  <div class="container">
+    <div class="row">
+      <hr />
+      <div class="col-md-9">
+        
+        <div class="row post" *ngFor="let post of posts$">
+          
+          <div class="col-md-1">
+            <div class="d-flex flex-column votebox">
+              <div class="p-2">
+                <mat-icon class="upvote">arrow_upward</mat-icon>
+              </div>
+              <div class="p-2 votecount">{{post.voteCount}}</div>
+              <div class="p-2">
+                <mat-icon class="downvote">arrow_downward</mat-icon>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-11">
+            <span class="subreddit-info">
+              <span class="subreddit-text"><a class="posturl" routerLink="">{{post.subredditName}}</a></span>
+              <span> . Posted by <a class="username" routerLink="/user/{{post.userName}}">{{post.userName}}</a></span>
+              <span> . {{post.duration}}</span>
+            </span>
+            <hr />
+            <div class="post-title">
+              <a class="postname" href="{{post.url}}">{{post.postName}}</a>
+            </div>
+            <div>
+              <p class="post-text">{{post.description}}</p>
+            </div>
+            <hr />
+            <span>
+              <a class="btnCommments" role="button">
+                <mat-icon>mode_comment</mat-icon>
+                Comments({{post.commentCount}})
+              </a>
+              <button class="login">
+                Read Post
+              </button>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<section class="home">
+  <div class="posts">
+    <div class="post" *ngFor="let post of posts$">
+
+      <div class="votebox">
+        <span class="box-upvote">
+          <mat-icon class="upvote">arrow_upward</mat-icon>
+        </span>
+        <span class="votecount">{{post.voteCount}}</span>
+        <span class="box-downvote">
+          <mat-icon class="downvote">arrow_downward</mat-icon>
+        </span>
+      </div>
+
+      <div class="post-info">
+        <span class="subreddit-info">
+          <span class="subreddit-text"><a class="posturl" routerLink="">{{post.subredditName}}</a></span>
+          <span> . Postado por <a class="username" routerLink="/user/{{post.userName}}">{{post.userName}}</a></span>
+          <span> . {{post.duration}}</span>
+        </span>
+        <div class="post-title">
+          <h3 class="postname">{{post.postName}}</h3>
+        </div>
+        <div>
+          <p class="post-text">{{post.description}}</p>
+        </div>
+
+        <a class="btnCommments">
+          <mat-icon class="iconComments">chat_bubble_outline</mat-icon>
+          {{post.commentCount}} Comentários
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar"></div>
+</section>

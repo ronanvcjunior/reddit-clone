@@ -16,25 +16,13 @@ export class TokenInterceptor implements HttpInterceptor {
     constructor(public authService: AuthService) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
         if (this.authService.getJwtToken()) {
             this.addToken(req, this.authService.getJwtToken())
-            console.log("teste1")
-            
-            console.log(this.addToken(req, this.authService.getJwtToken()))
-            
         }
-
         return next.handle(req).pipe(catchError(error => {
              if (error instanceof HttpErrorResponse && error.status === 403) {
-                console.log("teste2")
-                console.log(this.handleAuthErrors(req, next))
-                    
                 return this.handleAuthErrors(req, next) 
             } else {
-                console.log("teste3")
-                console.log(throwError(error))
-                
                 return throwError(error) 
             }
         }))
@@ -49,6 +37,7 @@ export class TokenInterceptor implements HttpInterceptor {
 
     private handleAuthErrors(req: HttpRequest<any>, next: HttpHandler) {
         if (!this.isTokenRefreshing) {
+            
             this.isTokenRefreshing = true 
             this.refreshTokenSubject.next(null) 
 
