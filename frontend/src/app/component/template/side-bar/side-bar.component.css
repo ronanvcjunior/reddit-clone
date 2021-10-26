@@ -1,0 +1,59 @@
+.sidebar {
+  width: 310px;
+  height: 242px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #878A8C;
+  border-radius: 8px;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.image {
+    display: flex;
+    width: 100%;
+    height: 90px;
+    border-radius: 4px;
+    background: url("../../../../assets/banner-side-bar.jpg");
+    background-size: cover;
+    background-color: #bfe4fc;
+}
+
+.btnCreatePost,
+.btnCreateSubreddit {
+  background-color: #0079D3;
+  border-color: #0079D3;
+  color: aliceblue;
+  fill: #0079D3;
+  border: 1px solid;
+  border-radius: 34px;
+  text-align: center;
+  letter-spacing: 1px;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .5px;
+  line-height: 24px;
+  text-transform: uppercase;
+  padding: 3px 16px;
+  opacity: 1;
+  width: 288px;
+  height: 34px;
+  cursor: pointer;
+}
+
+.btnCreateSubreddit {
+  margin-top: 5px;
+  color: #0079D3;
+  background-color: transparent;
+}
+
+.btnCreatePost:hover {
+  box-shadow: inset 0 0 100px rgba(255, 255, 255, 0.1);
+}
+
+.btnCreateSubreddit:hover {
+  box-shadow: inset 0 0 100px rgba(30, 139, 216, 0.05);
+}

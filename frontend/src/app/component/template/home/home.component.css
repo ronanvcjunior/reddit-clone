@@ -7,10 +7,7 @@
 }
 
 .sidebar {
-    max-width: 310px;
+    display: flex;
+    flex-direction: column;
     width: 310px;
-    height: 300px;
-    border-radius: 8px;
-    border: 1px solid #cccccc;
-    background-color: #ffffff;
 }
