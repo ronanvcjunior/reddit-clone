@@ -47,6 +47,7 @@ public class PostService {
         PostResponse postResponse = mapper.mapPostToResponse(post);
         
         subreddit.getPosts().add(post);
+        subreddit.setNumberOfPosts(subreddit.getNumberOfPosts()+1);
         return postResponse;
     }
 

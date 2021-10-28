@@ -5,6 +5,8 @@ import java.util.List;
 import com.ronan.redditclone.dto.SubredditDto;
 import com.ronan.redditclone.service.SubredditService;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,6 +36,12 @@ public class SubredditController {
     @GetMapping
     public ResponseEntity<List<SubredditDto>> getAllSubreddits() {
         List<SubredditDto> subredditDtos = service.findAll();
+        return ResponseEntity.ok().body(subredditDtos);
+    }
+
+    @GetMapping("/page")
+    public ResponseEntity<Page<SubredditDto>> getAllSubredditsPage(Pageable pageable) {
+        Page<SubredditDto> subredditDtos = service.findAllPage(pageable);
         return ResponseEntity.ok().body(subredditDtos);
     }
 
