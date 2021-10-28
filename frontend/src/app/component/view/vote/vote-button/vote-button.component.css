@@ -15,16 +15,16 @@
 }
 
 .box-upvote:hover {
-  background-color: #ccc;
+  background-color: #d9d9d970;
   color: #cc3700;
 }
 
 .box-downvote:hover {
-  background-color: #ccc;
+  background-color: #d9d9d970;
   color: #5A75CC;
 }
 
 .votecount {
-  font-size: 16px;
-  font-weight: 400;
+  font-size: 12px;
+  font-weight: 500;
 }
