@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class PostResponse implements Serializable {
     private static final long serialVersionUID = 1L;
     
-    private Long id;
+    private Long postId;
     private String postName;
     private String url;
     private String description;

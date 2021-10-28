@@ -47,4 +47,6 @@ public class Post implements Serializable {
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "id", referencedColumnName = "id")
     private Subreddit subreddit;
+
+    private Integer commentCount;
 }

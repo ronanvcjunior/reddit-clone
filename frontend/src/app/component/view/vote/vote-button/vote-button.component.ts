@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { PostModel } from '../../posts/post-model';
+import { PostModel } from '../../posts/model/post.model';
 
 @Component({
   selector: 'app-vote-button',
