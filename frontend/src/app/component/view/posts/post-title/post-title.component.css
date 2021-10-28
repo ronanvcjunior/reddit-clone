@@ -5,6 +5,23 @@
   margin-right: 24px;
 }
 
+.posts__sort {
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  border: 1px solid #cccccc;
+  background-color: #ffffff;
+  height: 72px;
+  padding: 10px 12px;
+  margin-bottom: 16px;
+}
+
+.chip-sort {
+  color: #878A8C;
+  background: none;
+  cursor: pointer;
+}
+
 .post {
   display: flex;
   border-radius: 8px;
@@ -12,6 +29,7 @@
   background-color: #ffffff;
   margin-bottom: 10px;
   cursor: pointer;
+  transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .post:hover {
@@ -80,4 +98,9 @@
 .iconComments {
   transform: scale(-1, 1);
   margin-right: 4px;
+}
+
+.success {
+  background-color: #F6F7F8;
+  color: #0079D3;
 }

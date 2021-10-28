@@ -19,7 +19,7 @@ export class PostService {
   }
 
   getAllPostsPage(sort: string, page: number, size: number): Observable<PostPageModel> {
-    const url = `${this.baseUrl}/posts/page/?sort=${sort}&page=${page}&size=${size}`
+    const url = `${this.baseUrl}/posts/page/?sort=${sort}&sort=postId,desc&page=${page}&size=${size}`
     console.log(url)
     return this.http.get<PostPageModel>(url);
   }

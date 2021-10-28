@@ -16,6 +16,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatChipsModule } from '@angular/material/chips';
+import {MatSortModule} from '@angular/material/sort'; 
 
 import { HeaderComponent } from './component/template/header/header.component';
 import { SignupComponent } from './component/view/auth/signup/signup.component';
@@ -55,6 +57,8 @@ import { SubredditSideBarComponent } from './component/view/subreddit/subreddit-
     MatButtonModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
+    MatChipsModule,
+    MatSortModule,
     NgxWebstorageModule.forRoot()
   ],
   providers: [

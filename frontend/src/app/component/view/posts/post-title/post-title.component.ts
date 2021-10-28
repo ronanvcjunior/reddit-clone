@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PostModel } from '../post-model';
+import { Sort } from '@angular/material/sort';
+import { PostModel } from '../model/post.model';
 import { PostService } from '../shared/posts.service';
 
 @Component({
@@ -11,14 +12,28 @@ export class PostTitleComponent implements OnInit {
 
   posts$: Array<PostModel> = [];
 
-  constructor(private postService: PostService) {
-    this.postService.getAllPosts().subscribe(post => {
+  status: string = 'postId,desc';
 
-      this.posts$ = post;
-    })
+  constructor(private postService: PostService) {
   }
 
   ngOnInit(): void {
+    this.getPostsPage(this.status)
   }
 
+  getPostsPage(sort: string) {
+    this.postService.getAllPostsPage(sort, 0, 20)
+      .subscribe(data => {
+        this.posts$ = data.content
+        console.log(this.posts$);
+
+      })
+  }
+
+  sortEvent(sort: string) {
+    this.status = sort;
+    console.log(sort);
+    
+    this.getPostsPage(sort);
+  }
 }

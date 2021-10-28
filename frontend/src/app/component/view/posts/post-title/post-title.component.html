@@ -1,4 +1,40 @@
 <div class="posts">
+  <div class="posts__sort">
+    <mat-chip-list aria-label="Fish selection">
+      <mat-chip class="chip-sort" 
+          (click)="sortEvent('reactionsCount,desc')"
+          [ngClass]="status == 'reactionsCount,desc' ? 'success' : ''"
+        >
+        <mat-icon>local_fire_department</mat-icon>
+        <span>Em Destaque</span>
+      </mat-chip>
+
+      <mat-chip class="chip-sort" 
+          (click)="sortEvent('postId,desc')" 
+          [ngClass]="status == 'postId,desc' ? 'success' : ''"
+        >
+        <mat-icon>brightness_low</mat-icon>
+        <span>Novos</span>
+      </mat-chip>
+
+      <mat-chip class="chip-sort" 
+          (click)="sortEvent('voteCount,desc')" 
+          [ngClass]="status == 'voteCount,desc' ? 'success' : ''"
+        >
+        <mat-icon>how_to_vote</mat-icon>
+        <span>Mais Votados</span>
+      </mat-chip>
+
+      <mat-chip class="chip-sort" 
+          (click)="sortEvent('commentCount,desc')" 
+          [ngClass]="status == 'commentCount,desc' ? 'success' : ''"
+        >
+        <mat-icon>add_comment</mat-icon>
+        <span>Mais Comentados</span>
+      </mat-chip>
+    </mat-chip-list>
+
+  </div>
   <div class="post" *ngFor="let post of posts$">
 
     <div class="votebox">
