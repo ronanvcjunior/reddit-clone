@@ -14,6 +14,8 @@ import com.ronan.redditclone.repository.CommentRepository;
 import com.ronan.redditclone.repository.PostRepository;
 import com.ronan.redditclone.repository.UserRepository;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -46,22 +48,42 @@ public class CommentService {
     }
 
     @Transactional(readOnly = true)
-    public List<CommentsDto> getAllCommentsForPost(Long postId) {
+    public List<CommentsDto> getAllCommentsbyPost(Long postId) {
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new PostNotFoundException("No subreddit found with ID - " + postId));
 
-        List<Comment> comments = repository.findByPost(post);
+        List<Comment> comments = repository.findAllByPost(post);
         List<CommentsDto> commentsDtos = comments.stream().map(mapper::mapCommentToDto).collect(Collectors.toList());
         return commentsDtos;
     }
+    
+    @Transactional(readOnly = true)
+    public Page<CommentsDto> getAllCommentsPagebyPost(Long postId, Pageable pageable) {
+        Post post = postRepository.findById(postId)
+                .orElseThrow(() -> new PostNotFoundException("No subreddit found with ID - " + postId));
+
+        Page<Comment> commentsPage = repository.findAllByPost(post, pageable);
+        Page<CommentsDto> commentsPageDtos = commentsPage.map(mapper::mapCommentToDto);
+        return commentsPageDtos;
+    }
 
     @Transactional(readOnly = true)
-    public List<CommentsDto> getAllCommentsForUser(String username) {
+    public List<CommentsDto> getAllCommentsbyUser(String username) {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new SpringRedditException("User not found with name - " + username));
 
         List<Comment> comments = repository.findAllByUser(user);
         List<CommentsDto> commentsDtos = comments.stream().map(mapper::mapCommentToDto).collect(Collectors.toList());
         return commentsDtos;
+    }
+
+    @Transactional(readOnly = true)
+    public Page<CommentsDto> getAllCommentsPagebyUser(String username, Pageable pageable) {
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new SpringRedditException("User not found with name - " + username));
+
+        Page<Comment> commentsPage = repository.findAllByUser(user, pageable);
+        Page<CommentsDto> commentsPageDtos = commentsPage.map(mapper::mapCommentToDto);
+        return commentsPageDtos;
     }
 }

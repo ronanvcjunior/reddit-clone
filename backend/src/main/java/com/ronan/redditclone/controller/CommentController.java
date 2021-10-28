@@ -5,6 +5,8 @@ import java.util.List;
 import com.ronan.redditclone.dto.CommentsDto;
 import com.ronan.redditclone.service.CommentService;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,14 +32,26 @@ public class CommentController {
     }
 
     @GetMapping("/by-post/{postId}")
-    public ResponseEntity<List<CommentsDto>> getAllCommentsForPost(@PathVariable Long postId) {
-        List<CommentsDto> commentsDtos = service.getAllCommentsForPost(postId);
+    public ResponseEntity<List<CommentsDto>> getAllCommentsbyPost(@PathVariable Long postId) {
+        List<CommentsDto> commentsDtos = service.getAllCommentsbyPost(postId);
+        return ResponseEntity.ok().body(commentsDtos);
+    }
+
+    @GetMapping("/page/by-post/{postId}")
+    public ResponseEntity<Page<CommentsDto>> getAllCommentsPagebyPost(@PathVariable Long postId, Pageable pageable) {
+        Page<CommentsDto> commentsDtos = service.getAllCommentsPagebyPost(postId, pageable);
         return ResponseEntity.ok().body(commentsDtos);
     }
 
     @GetMapping("/by-user/{username}")
-    public ResponseEntity<List<CommentsDto>> getAllCommentsForUser(@PathVariable String username) {
-        List<CommentsDto> commentsDtos = service.getAllCommentsForUser(username);
+    public ResponseEntity<List<CommentsDto>> getAllCommentsbyUser(@PathVariable String username) {
+        List<CommentsDto> commentsDtos = service.getAllCommentsbyUser(username);
+        return ResponseEntity.ok().body(commentsDtos);
+    }
+
+    @GetMapping("/page/by-user/{username}")
+    public ResponseEntity<Page<CommentsDto>> getAllCommentsPagebyUser(@PathVariable String username, Pageable pageable) {
+        Page<CommentsDto> commentsDtos = service.getAllCommentsPagebyUser(username, pageable);
         return ResponseEntity.ok().body(commentsDtos);
     }
 }

@@ -93,6 +93,7 @@ public class PostService {
         return postsPage.map(mapper::mapPostToResponse);
     }
 
+    @Transactional(readOnly = true)
     public List<PostResponse> findPostByUsername(String username) {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException(username));
@@ -101,6 +102,7 @@ public class PostService {
         return posts.stream().map(mapper::mapPostToResponse).collect(Collectors.toList());
     }
 
+    @Transactional(readOnly = true)
     public Page<PostResponse> findPostPageByUsername(String username, Pageable pageable) {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException(username));
