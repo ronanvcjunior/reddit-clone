@@ -44,6 +44,7 @@ public class CommentService {
         comment = repository.save(comment);
         CommentsDto save = mapper.mapCommentToDto(comment);
         post.setCommentCount(post.getCommentCount()+1);
+        post.setReactionsCount(post.getReactionsCount()+1);
         return save;
     }
 

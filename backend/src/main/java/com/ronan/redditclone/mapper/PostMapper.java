@@ -36,6 +36,7 @@ public abstract class PostMapper {
     @Mapping(target = "subreddit", source = "subreddit")
     @Mapping(target = "voteCount", constant = "0")
     @Mapping(target = "commentCount", constant = "0")
+    @Mapping(target = "reactionsCount", constant = "0")
     @Mapping(target = "user", source = "user")
     public abstract Post mapRequestToPost(PostRequest postRequest, Subreddit subreddit, User user);
 

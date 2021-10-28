@@ -49,4 +49,6 @@ public class Post implements Serializable {
     private Subreddit subreddit;
 
     private Integer commentCount;
+
+    private Integer reactionsCount;
 }
