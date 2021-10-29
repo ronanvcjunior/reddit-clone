@@ -8,7 +8,6 @@ import com.ronan.redditclone.domain.Post;
 import com.ronan.redditclone.domain.Vote;
 import com.ronan.redditclone.dto.VoteDto;
 import com.ronan.redditclone.exception.PostNotFoundException;
-import com.ronan.redditclone.exception.SpringRedditException;
 import com.ronan.redditclone.mapper.VoteMapper;
 import com.ronan.redditclone.repository.PostRepository;
 import com.ronan.redditclone.repository.VoteRepository;
@@ -16,11 +15,11 @@ import com.ronan.redditclone.repository.VoteRepository;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
-import lombok.extern.log4j.Log4j2;
+// import lombok.extern.log4j.Log4j2;
 
 import static com.ronan.redditclone.domain.VoteType.UPVOTE;
 
-@Log4j2
+// @Log4j2
 @Service
 @AllArgsConstructor
 public class VoteService {
@@ -86,5 +85,13 @@ public class VoteService {
         } else {
             post.setVoteCount(post.getVoteCount() - 1);
         }
+    }
+
+    public VoteDto findTopByPostAndUserOrderByVoteIdDesc(Long postId) {
+        Post post = postRepository.findById(postId)
+                .orElseThrow(() -> new PostNotFoundException("Post Not Found with ID - " + postId));
+
+        Optional<Vote> voteByPostAndUser = repository.findTopByPostAndUserOrderByVoteIdDesc(post, authService.getCurrentUser());
+        return mapper.mapVoteToDto(voteByPostAndUser.get());
     }
 }

@@ -3,8 +3,6 @@ package com.ronan.redditclone.domain;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
-import org.jetbrains.annotations.NotNull;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
