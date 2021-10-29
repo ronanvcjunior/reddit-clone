@@ -26,7 +26,7 @@
 
 .votecount {
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .upvote__success {
@@ -35,4 +35,12 @@
 
 .downvote__success {
   color: #5A75CC;
+}
+
+.downvote__number {
+  color: #5A75CC;
+}
+
+.upvote__number {
+  color: #cc3700;
 }

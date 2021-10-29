@@ -1,24 +1,45 @@
 .sidebar {
   width: 310px;
-  height: 242px;
+  height: 262px;
   border: 1px solid #ccc;
   margin-bottom: 10px;
   overflow: hidden;
   background-color: rgba(255, 255, 255, 0.8);
-  color: #878A8C;
+  color: #1c1c1c;
   border-radius: 8px;
-  padding: 8px;
   margin-bottom: 10px;
 }
 
 .image {
     display: flex;
     width: 100%;
-    height: 90px;
-    border-radius: 4px;
+    height: 34px;
+    border-radius: 8px 8px 0 0;
     background: url("../../../../assets/banner-side-bar.jpg");
     background-size: cover;
-    background-color: #bfe4fc;
+    background-position-y: center;
+    background-position-x: center;
+    background-repeat: no-repeat;
+}
+
+.home {
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+}
+
+.home__image {
+  display: flex;
+  background: url("../../../../assets/snoo-home.png")repeat scroll 0% 0% / 40px 68px;
+  margin-right: 16px;
+  height: 68px;
+  width: 40px;
+  transform: translateY(-16px);
+}
+
+.home__titulo {
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .btnCreatePost,
@@ -42,10 +63,11 @@
   width: 288px;
   height: 34px;
   cursor: pointer;
+  margin-top: 8px;
 }
 
 .btnCreateSubreddit {
-  margin-top: 5px;
+  margin-top: 12px;
   color: #0079D3;
   background-color: transparent;
 }

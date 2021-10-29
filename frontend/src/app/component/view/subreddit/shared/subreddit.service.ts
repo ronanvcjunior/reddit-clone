@@ -19,7 +19,7 @@ export class SubredditService {
   }
 
   getAllSubredditsPage(sort: string, page: number, size: number): Observable<SubredditPageModel> {
-    const url = `${this.baseUrl}/subreddit/page/?sort=${sort}&page=${page}&size=${size}`
+    const url = `${this.baseUrl}/subreddit/page/?sort=${sort}&sort=id,desc&page=${page}&size=${size}`
     // console.log(url)
     return this.http.get<SubredditPageModel>(url);
   }

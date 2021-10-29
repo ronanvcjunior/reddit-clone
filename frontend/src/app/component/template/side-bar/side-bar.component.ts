@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { AuthService } from '../../view/auth/shared/auth.service';
+import { SignupComponent } from '../../view/auth/signup/signup.component';
 
 @Component({
   selector: 'app-side-bar',
@@ -7,9 +11,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SideBarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dialog: MatDialog, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
+  criarPostagem() {
+    if (this.authService.getUserName() != null) {
+      this.router.navigate(['post/create'])
+    } else {
+      this.openSignup()
+    }
+  }
+
+  criarSubreddit() {
+    if (this.authService.getUserName() != null) {
+      this.router.navigate(['subreddit/create'])
+    } else {
+      this.openSignup()
+    }
+  }
+
+  openSignup(): void {
+    const DIALOG_CONFIG = new MatDialogConfig()
+    DIALOG_CONFIG.disableClose = true
+    DIALOG_CONFIG.autoFocus = true
+    this.dialog.open(SignupComponent, DIALOG_CONFIG)
+  }
+  
 }
