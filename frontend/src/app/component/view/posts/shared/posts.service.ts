@@ -23,4 +23,9 @@ export class PostService {
     console.log(url)
     return this.http.get<PostPageModel>(url);
   }
+
+  getPostById(postId: number): Observable<PostModel> {
+    const url = `${this.baseUrl}/posts/${postId}`
+    return this.http.get<PostModel>(url)
+  }
 }

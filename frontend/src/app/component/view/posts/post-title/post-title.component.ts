@@ -26,7 +26,6 @@ export class PostTitleComponent implements OnInit {
       .subscribe(data => {
         this.posts$ = data.content
         console.log(this.posts$);
-
       })
   }
 

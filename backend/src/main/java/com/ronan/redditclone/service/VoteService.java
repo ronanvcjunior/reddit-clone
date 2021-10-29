@@ -16,9 +16,11 @@ import com.ronan.redditclone.repository.VoteRepository;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 
 import static com.ronan.redditclone.domain.VoteType.UPVOTE;
 
+@Log4j2
 @Service
 @AllArgsConstructor
 public class VoteService {
@@ -37,6 +39,9 @@ public class VoteService {
                 .orElseThrow(() -> new PostNotFoundException("Post Not Found with ID - " + voteDto.getPostId()));
 
         Optional<Vote> voteByPostAndUser = repository.findTopByPostAndUserOrderByVoteIdDesc(post, authService.getCurrentUser());
+        if (voteByPostAndUser.isPresent()) {
+            log.info(voteByPostAndUser.get().getUser().getUsername());
+        }
 
         checkUserHasAlreadyVotedFotPost(post, voteByPostAndUser, voteDto);
 
