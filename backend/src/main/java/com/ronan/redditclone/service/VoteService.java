@@ -34,43 +34,52 @@ public class VoteService {
     private final VoteMapper mapper;
 
     @Transactional
-    public VoteDto vote(VoteDto voteDto) {
+    public void vote(VoteDto voteDto) {
         Post post = postRepository.findById(voteDto.getPostId())
                 .orElseThrow(() -> new PostNotFoundException("Post Not Found with ID - " + voteDto.getPostId()));
 
         Optional<Vote> voteByPostAndUser = repository.findTopByPostAndUserOrderByVoteIdDesc(post, authService.getCurrentUser());
         if (voteByPostAndUser.isPresent()) {
-            log.info(voteByPostAndUser.get().getUser().getUsername());
+            if (checkUserHasAlreadyVotedForPost(post, voteByPostAndUser, voteDto)) {
+                deleteVote(voteByPostAndUser.get().getVoteId(), post);
+                return;
+            }
+        } else {
+            post.setReactionsCount(post.getReactionsCount() + 1);
         }
-
-        checkUserHasAlreadyVotedFotPost(post, voteByPostAndUser, voteDto);
 
         voteUpOrDown(voteDto, post);
 
         Vote vote = mapper.mapDtoToVote(voteDto, post, authService.getCurrentUser());
+        if(voteByPostAndUser.isPresent()) {
+            vote.setVoteId(voteByPostAndUser.get().getVoteId());
+        }
         vote = repository.save(vote);
-        
-        return mapper.mapVoteToDto(vote);
     }
-
-    private void checkUserHasAlreadyVotedFotPost(Post post, Optional<Vote> voteByPostAndUser, VoteDto voteDto) {
-        if(voteByPostAndUser.isPresent() && voteByPostAndUser.get().getVoteType().equals(voteDto.getVoteType())) {
-            throw new SpringRedditException("You have already " + voteDto.getVoteType() + "'d for this post");
-        }
-
-        if (!voteByPostAndUser.isPresent()) {
-            post.setReactionsCount(post.getReactionsCount() + 1);
-        }
-
-        if (voteByPostAndUser.isPresent() && !voteByPostAndUser.get().getVoteType().equals(voteDto.getVoteType())) {
+    
+    private boolean checkUserHasAlreadyVotedForPost(Post post, Optional<Vote> voteByPostAndUser, VoteDto voteDto) {
+        if(voteByPostAndUser.get().getVoteType().equals(voteDto.getVoteType())) {
+            if (UPVOTE.equals(voteDto.getVoteType())) {
+                post.setVoteCount(post.getVoteCount() - 1);
+            } else {
+                post.setVoteCount(post.getVoteCount() + 1);
+            }
+            return true;
+        } else {
             if (UPVOTE.equals(voteDto.getVoteType())) {
                 post.setVoteCount(post.getVoteCount() + 1);
             } else {
                 post.setVoteCount(post.getVoteCount() - 1);
             }
+            return false;
         }
     }
-
+    
+        private void deleteVote(Long voteId, Post post) {
+            repository.deleteById(voteId);
+            post.setReactionsCount(post.getReactionsCount() - 1);
+        }
+    
     private void voteUpOrDown(VoteDto voteDto, Post post) {
         if (UPVOTE.equals(voteDto.getVoteType())) {
             post.setVoteCount(post.getVoteCount() + 1);

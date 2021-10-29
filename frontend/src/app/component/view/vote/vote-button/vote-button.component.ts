@@ -23,13 +23,14 @@ export class VoteButtonComponent implements OnInit {
   constructor(private service: VoteService, private servicePost: PostService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
+    
   }
 
   postVote(postId: number, voteType: string): void {
     this.vote.postId = postId
     this.vote.voteType = voteType
     this.service.postVote(this.vote).subscribe(resposta => {
-      this.atualizarPost(resposta.postId)
+      this.atualizarPost(postId)
     }, err => {
       if (err.error == null || err.error.status != 500) {
         this.openSignup()
