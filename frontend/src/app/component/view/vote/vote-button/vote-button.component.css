@@ -28,3 +28,11 @@
   font-size: 12px;
   font-weight: 500;
 }
+
+.upvote__success {
+  color: #cc3700;
+}
+
+.downvote__success {
+  color: #5A75CC;
+}

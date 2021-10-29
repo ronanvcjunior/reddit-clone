@@ -25,13 +25,11 @@ export class PostTitleComponent implements OnInit {
     this.postService.getAllPostsPage(sort, 0, 20)
       .subscribe(data => {
         this.posts$ = data.content
-        console.log(this.posts$);
       })
   }
 
   sortEvent(sort: string) {
     this.status = sort;
-    console.log(sort);
     
     this.getPostsPage(sort);
   }

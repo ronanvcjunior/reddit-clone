@@ -15,4 +15,9 @@ export class VoteService {
   postVote(vote: VoteModel): Observable<VoteModel> {
     return this.http.post<VoteModel>(this.baseUrl, vote)
   }
+
+  getVote(postId: number, username: string): Observable<VoteModel> {
+    const url = `${this.baseUrl}/${postId}/${username}`
+    return this.http.get<VoteModel>(url)
+  }
 }

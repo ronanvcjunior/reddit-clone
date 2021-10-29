@@ -1,9 +1,15 @@
 <div class="votebox">
     <span class="box-upvote">
-    <mat-icon class="upvote" (click)="postVote( post.postId , 'UPVOTE')">arrow_upward</mat-icon>
+    <mat-icon class="upvote" 
+            (click)="postVote( post.postId , 'UPVOTE')"
+            [ngClass]="voteType == 'UPVOTE' ? 'upvote__success' : ''"
+        >arrow_upward</mat-icon>
     </span>
     <span class="votecount">{{post.voteCount}}</span>
     <span class="box-downvote">
-    <mat-icon class="downvote" (click)="postVote(post.postId, 'DOWNVOTE')">arrow_downward</mat-icon>
+    <mat-icon class="downvote" 
+            (click)="postVote(post.postId, 'DOWNVOTE')"
+            [ngClass]="voteType == 'DOWNVOTE' ? 'downvote__success' : ''"
+        >arrow_downward</mat-icon>
     </span>
 </div>

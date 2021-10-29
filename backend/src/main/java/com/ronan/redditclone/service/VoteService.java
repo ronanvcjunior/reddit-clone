@@ -5,6 +5,7 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import com.ronan.redditclone.domain.Post;
+import com.ronan.redditclone.domain.User;
 import com.ronan.redditclone.domain.Vote;
 import com.ronan.redditclone.dto.VoteDto;
 import com.ronan.redditclone.exception.PostNotFoundException;
@@ -15,11 +16,11 @@ import com.ronan.redditclone.repository.VoteRepository;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
-// import lombok.extern.log4j.Log4j2;
+import lombok.extern.log4j.Log4j2;
 
 import static com.ronan.redditclone.domain.VoteType.UPVOTE;
 
-// @Log4j2
+@Log4j2
 @Service
 @AllArgsConstructor
 public class VoteService {
@@ -87,11 +88,15 @@ public class VoteService {
         }
     }
 
-    public VoteDto findTopByPostAndUserOrderByVoteIdDesc(Long postId) {
+    public VoteDto findTopByPostAndUserOrderByVoteIdDesc(Long postId, String username) {
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new PostNotFoundException("Post Not Found with ID - " + postId));
 
-        Optional<Vote> voteByPostAndUser = repository.findTopByPostAndUserOrderByVoteIdDesc(post, authService.getCurrentUser());
+        User user = authService.findByUsername(username);
+
+        log.info(user);
+
+        Optional<Vote> voteByPostAndUser = repository.findTopByPostAndUserOrderByVoteIdDesc(post, user);
         return mapper.mapVoteToDto(voteByPostAndUser.get());
     }
 }

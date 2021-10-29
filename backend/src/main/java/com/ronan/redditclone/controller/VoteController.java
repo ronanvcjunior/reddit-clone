@@ -26,9 +26,9 @@ public class VoteController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/{postId}")
-    public ResponseEntity<VoteDto> findTopByPostAndUserOrderByVoteIdDesc(@PathVariable Long postId) {
-        VoteDto voteResponse = service.findTopByPostAndUserOrderByVoteIdDesc(postId);
+    @GetMapping("/{postId}/{username}")
+    public ResponseEntity<VoteDto> findTopByPostAndUserOrderByVoteIdDesc(@PathVariable Long postId, @PathVariable String username) {
+        VoteDto voteResponse = service.findTopByPostAndUserOrderByVoteIdDesc(postId, username);
         return ResponseEntity.ok().body(voteResponse);
     }
 }

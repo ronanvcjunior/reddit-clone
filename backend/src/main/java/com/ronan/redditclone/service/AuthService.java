@@ -170,6 +170,13 @@ public class AuthService {
         return usersDto;
     }
 
+    @Transactional(readOnly = true)
+    public User findByUsername(String username) {
+        User user = repository.findByUsername(username).orElse(null);
+
+        return user;
+    }
+
     public boolean isLoggedIn() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return !(authentication instanceof AnonymousAuthenticationToken) && authentication.isAuthenticated();
