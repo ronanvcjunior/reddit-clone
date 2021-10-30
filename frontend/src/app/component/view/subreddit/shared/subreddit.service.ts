@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { SubredditRequestModel } from '../model/subreddit-Request.model';
 import { SubredditModel } from '../model/subreddit.model';
 import { SubredditPageModel } from '../model/subredditPage.model';
 
@@ -9,7 +10,7 @@ import { SubredditPageModel } from '../model/subredditPage.model';
 })
 export class SubredditService {
 
-  baseUrl: String = 'http://localhost:8080/api'
+  baseUrl: string = 'http://localhost:8080/api/subreddit'
 
   constructor(private http: HttpClient) { }
 
@@ -19,8 +20,12 @@ export class SubredditService {
   }
 
   getAllSubredditsPage(sort: string, page: number, size: number): Observable<SubredditPageModel> {
-    const url = `${this.baseUrl}/subreddit/page/?sort=${sort}&sort=id,desc&page=${page}&size=${size}`
+    const url = `${this.baseUrl}/page/?sort=${sort}&sort=id,desc&page=${page}&size=${size}`
     // console.log(url)
     return this.http.get<SubredditPageModel>(url);
+  }
+
+  postSubreddit(subredditRequest: SubredditRequestModel): Observable<SubredditModel> {
+    return this.http.post<SubredditModel>(this.baseUrl, subredditRequest)
   }
 }

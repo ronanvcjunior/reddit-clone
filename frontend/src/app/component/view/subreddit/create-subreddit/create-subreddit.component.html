@@ -1,0 +1,33 @@
+<main>
+  <div class="container">
+    <h2 class="title">Criar uma comunidade</h2>
+    <div class="line"></div>
+    <h3 class="title">Título</h3>
+    <span class="title__span">Nomes de comunidade não podem ser alterados, inclusive quanto ao uso de letras maiúsculas.</span>
+    <form class="form" [formGroup]="createSubredditForm" (submit)="createSubreddit()">
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label> Título
+        </mat-label>
+        <input matInput formControlName="name" required>
+        <mat-error
+          *ngIf="createSubredditForm.controls.name.touched && createSubredditForm.controls.name.invalid">
+          <span *ngIf="createSubredditForm.controls.name.errors!.required">Este campo é obrigatório.</span>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-field" appearance="outline">
+        <mat-label> Descrição
+        </mat-label>
+        <textarea matInput formControlName="description" required></textarea>
+        <mat-error
+          *ngIf="createSubredditForm.controls.description.touched && createSubredditForm.controls.description.invalid">
+          <span *ngIf="createSubredditForm.controls.description.errors!.required">Este campo é obrigatório.</span>
+        </mat-error>
+      </mat-form-field>
+      <button mat-raised-button type="submit">Criar Comunidade</button>
+    </form>
+  </div>
+  <a class="close" (click)="closeDialog()">
+    <mat-icon aria-hidden="false" class="icon_close">clear</mat-icon>
+  </a>
+</main>

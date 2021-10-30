@@ -30,6 +30,7 @@ import { PostTitleComponent } from './component/view/posts/post-title/post-title
 import { VoteButtonComponent } from './component/view/vote/vote-button/vote-button.component';
 import { SubredditSideBarComponent } from './component/view/subreddit/subreddit-side-bar/subreddit-side-bar.component';
 import { SideFooterComponent } from './component/template/side-footer/side-footer.component';
+import { CreateSubredditComponent } from './component/view/subreddit/create-subreddit/create-subreddit.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { SideFooterComponent } from './component/template/side-footer/side-foote
     PostTitleComponent,
     VoteButtonComponent,
     SubredditSideBarComponent,
-    SideFooterComponent
+    SideFooterComponent,
+    CreateSubredditComponent
   ],
   imports: [
     BrowserModule,
