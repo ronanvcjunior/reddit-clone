@@ -12,6 +12,8 @@
         <mat-error
           *ngIf="createSubredditForm.controls.name.touched && createSubredditForm.controls.name.invalid">
           <span *ngIf="createSubredditForm.controls.name.errors!.required">Este campo é obrigatório.</span>
+          <span *ngIf="createSubredditForm.controls.name.errors!.nameSubreddiExists">Este nome de Comunidade já
+            existe.</span>
         </mat-error>
       </mat-form-field>
 

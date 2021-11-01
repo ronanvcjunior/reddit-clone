@@ -2,6 +2,9 @@ package com.ronan.redditclone.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.Length;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,6 +30,8 @@ public class Subreddit implements Serializable {
 
     @NotBlank(message = "Community name is required")
     @Column(unique = true)
+    @Pattern(regexp = "^[a-zA-Z0-9À-ü_]+$")
+    @Length(min = 3, max = 21, message = "O campo NAME deve ter entre 5 e 25 caracteres")
     private String name;
 
     @NotBlank(message = "Description is required")

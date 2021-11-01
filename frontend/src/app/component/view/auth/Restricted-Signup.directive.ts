@@ -28,20 +28,22 @@ export class ValidationSignup {
     usernameExists(username: string): Observable<boolean> {
         this.listUsers()
         return of(username).pipe(
-            delay(500),
-            map((username) => {
-                for(var chave in this.users){
-                    if (this.users[chave].username.toString() == username) {
-                        // console.log(true);
+                delay(500),
+                map((username) => {
+                    // console.log('username: '+username)
+                    for(var chave in this.users){
+                        // console.log(this.users[chave].username.toString())
+                        if (this.users[chave].username.toString() == username) {
+                            // console.log(true);
+                            
+                            return true
+                        }
                         
-                        return true
                     }
+                    // console.log(false);
                     
-                }
-                // console.log(false);
-                
-                return false
-            })
+                    return false
+                })
         )
     }
 

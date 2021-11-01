@@ -12,7 +12,7 @@
         <mat-error *ngIf="signupForm.controls.username.touched && signupForm.controls.username.invalid">
           <span *ngIf="signupForm.controls.username.errors!.required">Este campo é obrigatório.</span>
           <span *ngIf="signupForm.controls.username.errors!.WhiteNotAllowed">Não pode ter espaços em branco.</span>
-          <span *ngIf="signupForm.controls.username.errors!.usernameExists">teste.</span>
+          <span *ngIf="signupForm.controls.username.errors!.usernameExists">Este nome de usuário já existe.</span>
         </mat-error>
       </mat-form-field>
       <mat-form-field class="form-field" appearance="outline">

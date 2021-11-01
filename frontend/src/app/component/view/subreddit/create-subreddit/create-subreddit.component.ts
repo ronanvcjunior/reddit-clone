@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { SubredditRequestModel } from '../model/subreddit-Request.model';
 import { SubredditService } from '../shared/subreddit.service';
+import { ValidationSubreddit } from '../validation/Restricted-Subreddit.directive';
 
 @Component({
   selector: 'app-create-subreddit',
@@ -15,7 +16,8 @@ export class CreateSubredditComponent implements OnInit {
 
   createSubredditForm!: FormGroup
 
-  constructor(private formBuilder: FormBuilder, public dialog: MatDialogRef<CreateSubredditComponent>, private service: SubredditService) { 
+  constructor(private formBuilder: FormBuilder, public dialog: MatDialogRef<CreateSubredditComponent>, private service: SubredditService,
+    private validation: ValidationSubreddit) {
     this.subredditRequestPayload = {
       name: '',
       description: ''
@@ -24,9 +26,9 @@ export class CreateSubredditComponent implements OnInit {
 
   ngOnInit(): void {
     this.createSubredditForm = this.formBuilder.group({
-      name: [null, [Validators.required]],
+      name: [null, [Validators.required], [this.validation.nameSubredditUniqueValidator()]],
       description: [null, [Validators.required]]
-    })
+    }, { asyncValidator: this.validation.nameSubredditUniqueValidator() })
   }
   
   createSubreddit(): void {

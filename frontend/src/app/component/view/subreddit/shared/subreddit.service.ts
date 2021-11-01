@@ -15,8 +15,7 @@ export class SubredditService {
   constructor(private http: HttpClient) { }
 
   getAllSubreddits(): Observable<Array<SubredditModel>> {
-    const url = `${this.baseUrl}/subreddit`
-    return this.http.get<Array<SubredditModel>>(url);
+    return this.http.get<Array<SubredditModel>>(this.baseUrl);
   }
 
   getAllSubredditsPage(sort: string, page: number, size: number): Observable<SubredditPageModel> {
@@ -27,5 +26,10 @@ export class SubredditService {
 
   postSubreddit(subredditRequest: SubredditRequestModel): Observable<SubredditModel> {
     return this.http.post<SubredditModel>(this.baseUrl, subredditRequest)
+  }
+
+  getSubredditByName(nameSubreddit: string): Observable<SubredditModel> {
+    const url = `${this.baseUrl}/name/${nameSubreddit}`
+    return this.http.get<SubredditModel>(url)
   }
 }

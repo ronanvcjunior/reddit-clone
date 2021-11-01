@@ -39,7 +39,7 @@ export class SignupComponent implements OnInit {
       username: [null, [Validators.required, checkWhitespace()], [this.validation.usernameUniqueValidator()]],
       email: [null, [Validators.required, Validators.email]],
       password: [null, [Validators.required, checkWhitespace()]]
-    }, { updateOn: 'blur', asyncValidator: this.validation.usernameUniqueValidator()})
+    }, { asyncValidator: this.validation.usernameUniqueValidator()})
 
     
   }

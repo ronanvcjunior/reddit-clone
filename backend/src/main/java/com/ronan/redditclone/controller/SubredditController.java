@@ -56,5 +56,4 @@ public class SubredditController {
         SubredditDto subredditDto = service.findByName(nameSubreddit);
         return ResponseEntity.ok().body(subredditDto);
     }
-    
 }

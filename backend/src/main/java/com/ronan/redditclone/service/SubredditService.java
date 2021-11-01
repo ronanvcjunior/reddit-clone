@@ -63,5 +63,4 @@ public class SubredditService {
         SubredditDto subredditDto = mapper.mapSubredditToDto(subreddit);
         return subredditDto;
     }
-
 }
