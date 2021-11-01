@@ -11,9 +11,11 @@
         <input matInput formControlName="name" required>
         <mat-error
           *ngIf="createSubredditForm.controls.name.touched && createSubredditForm.controls.name.invalid">
-          <span *ngIf="createSubredditForm.controls.name.errors!.required">Este campo é obrigatório.</span>
-          <span *ngIf="createSubredditForm.controls.name.errors!.nameSubreddiExists">Este nome de Comunidade já
-            existe.</span>
+          <span *ngIf="createSubredditForm.controls.name.errors!.required"> Este campo é obrigatório. </span>
+          <span *ngIf="createSubredditForm.controls.name.errors!.pattern"> Pode conter apenas letras, números ou underlines (_). </span>
+          <span *ngIf="createSubredditForm.controls.name.errors!.minlength"> Nomes de comunidade devem ter no mínimo 3 caracteres. </span>
+          <span *ngIf="createSubredditForm.controls.name.errors!.maxlength"> Nomes de comunidade devem ter no máximo 21 caracteres. </span>
+          <span *ngIf="createSubredditForm.controls.name.errors!.nameSubreddiExists"> Este nome de Comunidade já existe. </span>
         </mat-error>
       </mat-form-field>
 
