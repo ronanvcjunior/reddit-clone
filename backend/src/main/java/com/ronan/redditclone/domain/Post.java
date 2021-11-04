@@ -1,7 +1,5 @@
 package com.ronan.redditclone.domain;
 
-import org.springframework.lang.Nullable;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,10 +27,8 @@ public class Post implements Serializable {
     @NotBlank(message = "Post Name cannot be empty or Null")
     private String postName;
     
-    @Nullable
     private String url;
 
-    @Nullable
     @Lob
     private String description;
 

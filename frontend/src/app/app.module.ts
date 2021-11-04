@@ -19,6 +19,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSortModule } from '@angular/material/sort'; 
+import { MatSelectModule } from '@angular/material/select';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import { HeaderComponent } from './component/template/header/header.component';
 import { SignupComponent } from './component/view/auth/signup/signup.component';
@@ -31,6 +33,7 @@ import { VoteButtonComponent } from './component/view/vote/vote-button/vote-butt
 import { SubredditSideBarComponent } from './component/view/subreddit/subreddit-side-bar/subreddit-side-bar.component';
 import { SideFooterComponent } from './component/template/side-footer/side-footer.component';
 import { CreateSubredditComponent } from './component/view/subreddit/create-subreddit/create-subreddit.component';
+import { CreatePostComponent } from './component/view/posts/create-post/create-post.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +47,8 @@ import { CreateSubredditComponent } from './component/view/subreddit/create-subr
     VoteButtonComponent,
     SubredditSideBarComponent,
     SideFooterComponent,
-    CreateSubredditComponent
+    CreateSubredditComponent,
+    CreatePostComponent
   ],
   imports: [
     BrowserModule,
@@ -63,6 +67,8 @@ import { CreateSubredditComponent } from './component/view/subreddit/create-subr
     MatSnackBarModule,
     MatChipsModule,
     MatSortModule,
+    MatSelectModule,
+    MatTabsModule,
     NgxWebstorageModule.forRoot(),
     EditorModule
   ],
