@@ -7,8 +7,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxWebstorageModule } from 'ngx-webstorage';
+import { EditorModule } from '@tinymce/tinymce-angular';
 
-import {MatToolbarModule} from '@angular/material/toolbar';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
@@ -17,12 +18,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatChipsModule } from '@angular/material/chips';
-import {MatSortModule} from '@angular/material/sort'; 
+import { MatSortModule } from '@angular/material/sort'; 
 
 import { HeaderComponent } from './component/template/header/header.component';
 import { SignupComponent } from './component/view/auth/signup/signup.component';
 import { LoginComponent } from './component/view/auth/login/login.component';
-
 import { TokenInterceptor } from './util/token-interceptor';
 import { HomeComponent } from './component/template/home/home.component';
 import { SideBarComponent } from './component/template/side-bar/side-bar.component';
@@ -63,7 +63,8 @@ import { CreateSubredditComponent } from './component/view/subreddit/create-subr
     MatSnackBarModule,
     MatChipsModule,
     MatSortModule,
-    NgxWebstorageModule.forRoot()
+    NgxWebstorageModule.forRoot(),
+    EditorModule
   ],
   providers: [
     {
