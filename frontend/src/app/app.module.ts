@@ -35,9 +35,11 @@ import { SideFooterComponent } from './component/template/side-footer/side-foote
 import { CreateSubredditComponent } from './component/view/subreddit/create-subreddit/create-subreddit.component';
 import { CreatePostComponent } from './component/view/posts/create-post/create-post.component';
 import { CreatePostTextComponent } from './component/view/posts/create-post-text/create-post-text.component';
+import { SafeHtmlPipe } from './pipe/safe-html.pipe';
 
 @NgModule({
   declarations: [
+    SafeHtmlPipe,
     AppComponent,
     HeaderComponent,
     SignupComponent,

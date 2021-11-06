@@ -46,8 +46,9 @@
 }
 
 .post-info {
-  padding: 8px 8px 0px;
+  padding: 8px 16px 0px 8px;
   border-radius: 0 8px 8px 0;
+  width: 100%;
 }
 
 .subreddit-info {
