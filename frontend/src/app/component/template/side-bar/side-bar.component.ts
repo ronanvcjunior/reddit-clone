@@ -19,7 +19,7 @@ export class SideBarComponent implements OnInit {
 
   criarPostagem() {
     if (this.authService.getUserName() != null) {
-      this.router.navigate(['post/create'])
+      this.router.navigate(['submit'])
     } else {
       this.openSignup()
     }

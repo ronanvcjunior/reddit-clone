@@ -54,7 +54,10 @@
         <p class="post-text" [innerHtml]="post.description | safeHtml"></p>
       </div>
       <div>
-        <a href="{{post.url}}" class="post-text">{{post.url}}</a>
+        <a *ngIf="post.url" href="{{post.url}}" target="_blank" class="post-url">
+          {{post.url}}
+          <mat-icon class="iconUrl">ios_share</mat-icon>
+        </a>
       </div>
 
       <a class="btnCommments">

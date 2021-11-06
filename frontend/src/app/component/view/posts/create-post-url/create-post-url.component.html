@@ -18,20 +18,15 @@
       </mat-error>
     </mat-form-field>
 
-    <editor formControlName="description" class="full-width" [init]="{
-     height: 500,
-     menubar: false,
-     plugins: [
-       'advlist autolink lists link image charmap print preview anchor',
-       'searchreplace visualblocks code fullscreen',
-       'insertdatetime media table paste code help wordcount'
-     ],
-     toolbar:
-       'undo redo | formatselect | bold italic backcolor | \
-       alignleft aligncenter alignright alignjustify | \
-       bullist numlist outdent indent | removeformat | help'
-   }"></editor>
-
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>URL</mat-label>
+      <textarea formControlName="url" matInput type="url" required></textarea>
+      <mat-error *ngIf="createPostForm.controls.url.touched && createPostForm.controls.url.invalid">
+        <span *ngIf="createPostForm.controls.url.errors!.required"> Este campo é obrigatório. </span>
+        <span *ngIf="createPostForm.controls.url.errors!.pattern"> O link não parece certo.
+        </span>
+      </mat-error>
+    </mat-form-field>
     <div class="full-width button">
       <button class="button__post">POSTAR</button>
     </div>

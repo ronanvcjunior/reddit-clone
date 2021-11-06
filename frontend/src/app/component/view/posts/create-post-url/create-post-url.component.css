@@ -1,6 +1,6 @@
 .text {
-    padding: 16px;
-    width: 100%;
+  padding: 16px;
+  width: 100%;
 }
 
 .form {
@@ -20,7 +20,7 @@
 }
 
 .full-width:focus {
-    outline: none;
+  outline: none;
 }
 
 .button {

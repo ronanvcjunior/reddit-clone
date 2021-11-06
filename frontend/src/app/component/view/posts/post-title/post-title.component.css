@@ -82,6 +82,19 @@
   line-height: 22px;
 }
 
+.post-url {
+  color: #0079D3;
+  text-decoration: none;
+}
+
+.iconUrl {
+  font-size: 16px;
+}
+
+.post-url:hover {
+  text-decoration: underline;
+}
+
 .btnCommments {
   display: inline-flex;
   align-items: center;

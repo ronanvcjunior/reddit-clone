@@ -36,6 +36,7 @@ import { CreateSubredditComponent } from './component/view/subreddit/create-subr
 import { CreatePostComponent } from './component/view/posts/create-post/create-post.component';
 import { CreatePostTextComponent } from './component/view/posts/create-post-text/create-post-text.component';
 import { SafeHtmlPipe } from './pipe/safe-html.pipe';
+import { CreatePostUrlComponent } from './component/view/posts/create-post-url/create-post-url.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { SafeHtmlPipe } from './pipe/safe-html.pipe';
     SideFooterComponent,
     CreateSubredditComponent,
     CreatePostComponent,
-    CreatePostTextComponent
+    CreatePostTextComponent,
+    CreatePostUrlComponent
   ],
   imports: [
     BrowserModule,
