@@ -1,6 +1,6 @@
-export interface PostPayload {
+export interface PostRequestPayload {
     subredditName: string
     postName: string
-    url: string
-    description: string
+    url: string | null
+    description: string | null
 }

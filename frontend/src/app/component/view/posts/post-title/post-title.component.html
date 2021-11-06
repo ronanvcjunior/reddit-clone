@@ -51,7 +51,7 @@
         <h3 class="postname">{{post.postName}}</h3>
       </div>
       <div>
-        <p class="post-text">{{post.description}}</p>
+        <p class="post-text" [innerHtml]="post.description"></p>
       </div>
       <div>
         <a href="{{post.url}}" class="post-text">{{post.url}}</a>

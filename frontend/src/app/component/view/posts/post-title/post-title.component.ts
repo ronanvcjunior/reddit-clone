@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Sort } from '@angular/material/sort';
 import { PostModel } from '../model/post.model';
 import { PostService } from '../shared/posts.service';
 

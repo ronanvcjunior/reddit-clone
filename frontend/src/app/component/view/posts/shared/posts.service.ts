@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { PostModel } from '../model/post.model';
 import { PostPageModel } from '../model/postPage.model';
-import { PostPayload } from '../model/post.payload';
+import { PostRequestPayload } from '../model/post.payload';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +30,7 @@ export class PostService {
     return this.http.get<PostModel>(url)
   }
 
-  postPost(post: PostPayload): Observable<PostModel> {
+  postPost(post: PostRequestPayload): Observable<PostModel> {
     const url = `${this.baseUrl}/posts`
     return this.http.post<PostModel>(url, post)
   }

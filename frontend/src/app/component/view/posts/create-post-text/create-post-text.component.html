@@ -1,0 +1,39 @@
+<div class="text">
+  <form class="form" [formGroup]="createPostForm" (submit)="createPost()">
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Título</mat-label>
+      <input matInput type="text" formControlName="postName" required>
+      <mat-error *ngIf="createPostForm.controls.postName.touched && createPostForm.controls.postName.invalid">
+        <span *ngIf="createPostForm.controls.postName.errors!.required"> Este campo é obrigatório. </span>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Escolha uma Comunidade</mat-label>
+      <mat-select formControlName="subredditName" required>
+        <mat-option *ngFor="let subreddit of subreddits$" [value]="subreddit.name">{{subreddit.name}}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="createPostForm.controls.subredditName.touched && createPostForm.controls.subredditName.invalid">
+        <span *ngIf="createPostForm.controls.subredditName.errors!.required"> Este campo é obrigatório. </span>
+      </mat-error>
+    </mat-form-field>
+
+    <editor formControlName="description" class="full-width" [init]="{
+     height: 500,
+     menubar: false,
+     plugins: [
+       'advlist autolink lists link image charmap print preview anchor',
+       'searchreplace visualblocks code fullscreen',
+       'insertdatetime media table paste code help wordcount'
+     ],
+     toolbar:
+       'undo redo | formatselect | bold italic backcolor | \
+       alignleft aligncenter alignright alignjustify | \
+       bullist numlist outdent indent | removeformat | help'
+   }"></editor>
+
+    <div class="buttons">
+      <button>POSTAR</button>
+    </div>
+  </form>
+</div>

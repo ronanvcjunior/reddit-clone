@@ -34,6 +34,7 @@ import { SubredditSideBarComponent } from './component/view/subreddit/subreddit-
 import { SideFooterComponent } from './component/template/side-footer/side-footer.component';
 import { CreateSubredditComponent } from './component/view/subreddit/create-subreddit/create-subreddit.component';
 import { CreatePostComponent } from './component/view/posts/create-post/create-post.component';
+import { CreatePostTextComponent } from './component/view/posts/create-post-text/create-post-text.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { CreatePostComponent } from './component/view/posts/create-post/create-p
     SubredditSideBarComponent,
     SideFooterComponent,
     CreateSubredditComponent,
-    CreatePostComponent
+    CreatePostComponent,
+    CreatePostTextComponent
   ],
   imports: [
     BrowserModule,
