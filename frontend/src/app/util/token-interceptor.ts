@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core'
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse } from '@angular/common/http' 
 import { Observable, throwError, BehaviorSubject } from 'rxjs' 
 import { AuthService } from '../component/view/auth/shared/auth.service' 
-import { catchError, map, switchMap } from 'rxjs/operators' 
+import { catchError, filter, map, switchMap, take } from 'rxjs/operators' 
 import { LoginResponse } from '../component/view/auth/login/login.response.payload' 
 
 @Injectable({
@@ -19,6 +19,7 @@ export class TokenInterceptor implements HttpInterceptor {
         if (this.authService.getJwtToken()) {
             this.addToken(req, this.authService.getJwtToken())
         }
+        
         return next.handle(req).pipe(catchError(error => {
              if (error instanceof HttpErrorResponse && error.status === 403) {
                 return this.handleAuthErrors(req, next) 
@@ -48,9 +49,15 @@ export class TokenInterceptor implements HttpInterceptor {
                     return next.handle(this.addToken(req, refreshTokenResponse.authenticationToken))
                 })
             )
+        } else {
+            return this.refreshTokenSubject.pipe(
+                filter(result => result !== null),
+                take(1),
+                switchMap((res) => {
+                    return next.handle(this.addToken(req, this.authService.getJwtToken()))
+                })
+            );
         }
-
-        return next.handle(this.addToken(req, this.authService.getJwtToken()))
     }
 
 }

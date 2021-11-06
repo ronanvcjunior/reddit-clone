@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { LoginComponent } from '../../view/auth/login/login.component';
+import { AuthService } from '../../view/auth/shared/auth.service';
 import { SignupComponent } from '../../view/auth/signup/signup.component';
 
 @Component({
@@ -10,10 +11,18 @@ import { SignupComponent } from '../../view/auth/signup/signup.component';
 })
 export class HeaderComponent implements OnInit {
 
-  focus: boolean = false;
-  constructor(private dialog: MatDialog) {}
+  isLoggedIn!: boolean;
 
-  ngOnInit(): void {}
+  username!: string;
+
+  focus: boolean = false;
+  constructor(private dialog: MatDialog, private authService: AuthService) {}
+
+  ngOnInit(): void {
+    this.isLoggedIn = this.authService.isLoggedIn()
+    
+    this.username = this.authService.getUserName()
+  }
 
   focusOrBlur(focus: boolean): void {
     this.focus = focus

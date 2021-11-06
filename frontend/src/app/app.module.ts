@@ -21,6 +21,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatSortModule } from '@angular/material/sort'; 
 import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatMenuModule } from '@angular/material/menu';
 
 import { HeaderComponent } from './component/template/header/header.component';
 import { SignupComponent } from './component/view/auth/signup/signup.component';
@@ -75,6 +76,7 @@ import { CreatePostUrlComponent } from './component/view/posts/create-post-url/c
     MatSortModule,
     MatSelectModule,
     MatTabsModule,
+    MatMenuModule,
     NgxWebstorageModule.forRoot(),
     EditorModule
   ],

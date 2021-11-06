@@ -9,6 +9,8 @@ import { PostService } from '../shared/posts.service';
 })
 export class PostTitleComponent implements OnInit {
 
+  postDelete!: boolean
+
   posts$: Array<PostModel> = [];
 
   status: string = 'postId,desc';
@@ -31,5 +33,8 @@ export class PostTitleComponent implements OnInit {
     this.status = sort;
     
     this.getPostsPage(sort);
+  }
+
+  getPostByUser() {
   }
 }
