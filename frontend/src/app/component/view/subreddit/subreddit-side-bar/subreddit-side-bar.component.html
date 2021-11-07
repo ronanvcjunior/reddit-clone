@@ -10,7 +10,7 @@
   </div> -->
   <div>
     <div class="list-subreddit" aria-label="Lista de Subreddits" *ngFor="let subreddit of subreddits | slice:0:20">
-      <div class="subreddit"><a href="/view-subreddit/{{subreddit.id}}">{{subreddit.name}}</a></div>
+      <div class="subreddit"><a href="/r/{{subreddit.name}}">{{subreddit.name}}</a></div>
     </div>
   </div>
   <div class="reddit-ver-mais">

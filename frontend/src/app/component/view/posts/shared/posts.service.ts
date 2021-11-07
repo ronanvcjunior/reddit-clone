@@ -26,6 +26,12 @@ export class PostService {
     return this.http.get<PostPageModel>(url);
   }
 
+  getPostsBySubredditPage(subredditName: string | null, sort: string, page: number, size: number): Observable<PostPageModel> {
+    const url = `${this.baseUrl}/posts/page/by-subreddit/${subredditName}/?sort=${sort}&sort=postId,desc&page=${page}&size=${size}`
+    // console.log(url)
+    return this.http.get<PostPageModel>(url);
+  }
+
   getPostById(postId: number): Observable<PostModel> {
     const url = `${this.baseUrl}/posts/${postId}`
     return this.http.get<PostModel>(url)

@@ -40,6 +40,7 @@ import { SafeHtmlPipe } from './pipe/safe-html.pipe';
 import { CreatePostUrlComponent } from './component/view/posts/create-post-url/create-post-url.component';
 import { DeletePostComponent } from './component/view/posts/delete-post/delete-post.component';
 import { DeletePostConfirmComponent } from './component/view/posts/delete-post-confirm/delete-post-confirm.component';
+import { SubredditPageComponent } from './component/view/subreddit/subreddit-page/subreddit-page.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { DeletePostConfirmComponent } from './component/view/posts/delete-post-c
     CreatePostTextComponent,
     CreatePostUrlComponent,
     DeletePostComponent,
-    DeletePostConfirmComponent
+    DeletePostConfirmComponent,
+    SubredditPageComponent
   ],
   imports: [
     BrowserModule,

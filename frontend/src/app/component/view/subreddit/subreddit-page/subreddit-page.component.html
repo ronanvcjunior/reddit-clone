@@ -1,0 +1,49 @@
+<header>
+  <div class="banner"></div>
+  <div class="subreddit">
+    <div class="icon">
+      <p>r/</p>
+    </div>
+
+    <div class="subreddit_info">
+      <div class="subreddit__info__name">{{ subreddit.name }}</div>
+      <div class="subreddit__info__username">
+        Criado por
+        <a href="http://">{{ subreddit.userName }}</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="home">
+  <app-post-title></app-post-title>
+  <div class="sidebar">
+    <div class="sidebar_subreddit_info">
+        <div class="sidebar_subreddit_info_header">
+            Sobre a Comunidade
+        </div>
+
+        <div class="description">
+            {{ subreddit.description }}
+        </div>
+
+        <div class="numberOfPosts">
+            <span class="number">{{ subreddit.numberOfPosts }}</span>
+            <span class="posts">Postagens</span>
+        </div>
+
+        <div class="line"></div>
+
+        <div class="date">
+            <mat-icon class="date_icon">calendar_today</mat-icon>
+            <span>Criado em {{ dateCreate }}</span>
+        </div>
+
+        <div style="text-align: center">
+          <button class="btnCreatePost" (click)="criarPostagem()">Criar Postagem</button>
+        </div>
+    </div>
+
+    <app-side-footer></app-side-footer>
+  </div>
+</section>
