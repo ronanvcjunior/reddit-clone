@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import com.ronan.redditclone.domain.Post;
 import com.ronan.redditclone.domain.Subreddit;
 import com.ronan.redditclone.dto.SubredditDto;
+import com.ronan.redditclone.dto.response.SubredditResponse;
 import com.ronan.redditclone.exception.SpringRedditException;
 import com.ronan.redditclone.mapper.SubredditMapper;
 import com.ronan.redditclone.repository.SubredditRepository;
@@ -58,11 +59,11 @@ public class SubredditService {
     }
 
     @Transactional(readOnly = true)
-    public SubredditDto findByName(String name) {
+    public SubredditResponse findByName(String name) {
         Subreddit subreddit = repository.findByName(name)
                 .orElseThrow(() -> new SpringRedditException("No subreddit found with name - " + name));
-        SubredditDto subredditDto = mapper.mapSubredditToDto(subreddit);
-        return subredditDto;
+        SubredditResponse SubredditResponse = mapper.mapSubredditToResponse(subreddit);
+        return SubredditResponse;
     }
 
     @Transactional

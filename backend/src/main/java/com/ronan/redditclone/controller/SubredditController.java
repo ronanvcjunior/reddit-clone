@@ -3,6 +3,7 @@ package com.ronan.redditclone.controller;
 import java.util.List;
 
 import com.ronan.redditclone.dto.SubredditDto;
+import com.ronan.redditclone.dto.response.SubredditResponse;
 import com.ronan.redditclone.service.SubredditService;
 
 import org.springframework.data.domain.Page;
@@ -52,8 +53,8 @@ public class SubredditController {
     }
 
     @GetMapping(path = "/name/{nameSubreddit}")
-    public ResponseEntity<SubredditDto> getSubredditByName(@PathVariable String nameSubreddit) {
-        SubredditDto subredditDto = service.findByName(nameSubreddit);
+    public ResponseEntity<SubredditResponse> getSubredditByName(@PathVariable String nameSubreddit) {
+        SubredditResponse subredditDto = service.findByName(nameSubreddit);
         return ResponseEntity.ok().body(subredditDto);
     }
 }

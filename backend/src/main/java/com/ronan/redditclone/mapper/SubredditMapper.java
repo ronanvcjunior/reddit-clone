@@ -7,11 +7,15 @@ import org.mapstruct.Mapping;
 import com.ronan.redditclone.domain.Subreddit;
 import com.ronan.redditclone.domain.User;
 import com.ronan.redditclone.dto.SubredditDto;
+import com.ronan.redditclone.dto.response.SubredditResponse;
 
 @Mapper(componentModel = "spring")
 public interface SubredditMapper {
 
     SubredditDto mapSubredditToDto(Subreddit subreddit);
+
+    @Mapping(target = "userName", source = "user.username")
+    SubredditResponse mapSubredditToResponse(Subreddit subreddit);
 
     @InheritInverseConfiguration
     @Mapping(target = "posts", ignore = true)
