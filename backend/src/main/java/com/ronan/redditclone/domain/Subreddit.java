@@ -46,4 +46,8 @@ public class Subreddit implements Serializable {
     private User user;
 
     private Integer numberOfPosts=0;
+
+    public void deletePost(Post post) {
+        posts.remove(post);
+    }
 }

@@ -3,6 +3,7 @@ package com.ronan.redditclone.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.ronan.redditclone.domain.Post;
 import com.ronan.redditclone.domain.Subreddit;
 import com.ronan.redditclone.dto.SubredditDto;
 import com.ronan.redditclone.exception.SpringRedditException;
@@ -62,5 +63,14 @@ public class SubredditService {
                 .orElseThrow(() -> new SpringRedditException("No subreddit found with name - " + name));
         SubredditDto subredditDto = mapper.mapSubredditToDto(subreddit);
         return subredditDto;
+    }
+
+    @Transactional
+    public void updateListPostBySubredditName(Post post, String name) {
+        Subreddit subreddit = repository.findByName(name)
+                .orElseThrow(() -> new SpringRedditException("No subreddit found with name - " + name));
+        subreddit.deletePost(post);
+        subreddit.setNumberOfPosts(subreddit.getNumberOfPosts()-1);
+        repository.save(subreddit);
     }
 }

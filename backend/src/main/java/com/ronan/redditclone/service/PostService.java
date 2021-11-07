@@ -35,6 +35,8 @@ public class PostService {
     
     private final AuthService authService;
     
+    private final SubredditService subredditService;
+    
     private final PostMapper mapper;
     
     @Transactional
@@ -109,5 +111,12 @@ public class PostService {
 
         Page<Post> postsPage = repository.findAllByUser(user, pageable);
         return postsPage.map(mapper::mapPostToResponse);
+    }
+
+    public void delete(Long id) {
+        Post post = repository.findById(id)
+                .orElseThrow(() -> new SpringRedditException("No subreddit found with ID - " + id));
+        subredditService.updateListPostBySubredditName(post, post.getSubreddit().getName());
+        repository.deleteById(id);
     }
 }
