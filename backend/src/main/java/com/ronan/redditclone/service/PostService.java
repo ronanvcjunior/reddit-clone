@@ -87,9 +87,9 @@ public class PostService {
     }
     
     @Transactional(readOnly = true)
-    public Page<PostResponse> findPostPostBySubreddit(Long idSubreddit, Pageable pageable) {
-        Subreddit subreddit = subredditRepository.findById(idSubreddit)
-                .orElseThrow(() -> new SubredditNotFoundException(idSubreddit.toString()));
+    public Page<PostResponse> findPostPostBySubreddit(String nameSubreddit, Pageable pageable) {
+        Subreddit subreddit = subredditRepository.findByName(nameSubreddit)
+                .orElseThrow(() -> new SubredditNotFoundException(nameSubreddit.toString()));
         
         Page<Post> postsPage = repository.findAllBySubreddit(subreddit, pageable);
         return postsPage.map(mapper::mapPostToResponse);

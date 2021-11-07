@@ -57,9 +57,9 @@ public class PostController {
         return ResponseEntity.ok().body(postResponses);
     }
 
-    @GetMapping(path = "/page/by-subreddit/{idSubreddit}")
-    public ResponseEntity<Page<PostResponse>> getPostPageBySubreddit(@PathVariable Long idSubreddit, Pageable pageable) {
-        Page<PostResponse> postResponses = service.findPostPostBySubreddit(idSubreddit, pageable);
+    @GetMapping(path = "/page/by-subreddit/{nameSubreddit}")
+    public ResponseEntity<Page<PostResponse>> getPostPageBySubreddit(@PathVariable String nameSubreddit, Pageable pageable) {
+        Page<PostResponse> postResponses = service.findPostPostBySubreddit(nameSubreddit, pageable);
         return ResponseEntity.ok().body(postResponses);
     }
 
