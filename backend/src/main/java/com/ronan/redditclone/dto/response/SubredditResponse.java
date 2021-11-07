@@ -1,6 +1,7 @@
 package com.ronan.redditclone.dto.response;
 
 import java.io.Serializable;
+import java.time.Instant;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,4 +18,5 @@ public class SubredditResponse implements Serializable {
     private String description;
     private Integer numberOfPosts;
     private String userName;
+    private Instant createdDate;
 }

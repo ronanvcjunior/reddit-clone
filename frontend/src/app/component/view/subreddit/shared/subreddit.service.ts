@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { SubredditRequestModel } from '../model/subreddit-Request.model';
+import { SubredditResponseModel } from '../model/subreddit-response.model';
 import { SubredditModel } from '../model/subreddit.model';
 import { SubredditPageModel } from '../model/subredditPage.model';
 
@@ -28,8 +29,8 @@ export class SubredditService {
     return this.http.post<SubredditModel>(this.baseUrl, subredditRequest)
   }
 
-  getSubredditByName(nameSubreddit: string): Observable<SubredditModel> {
+  getSubredditByName(nameSubreddit: string): Observable<SubredditResponseModel> {
     const url = `${this.baseUrl}/name/${nameSubreddit}`
-    return this.http.get<SubredditModel>(url)
+    return this.http.get<SubredditResponseModel>(url)
   }
 }

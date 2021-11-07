@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SubredditModel } from '../../subreddit/model/subreddit.model';
 import { SubredditService } from '../../subreddit/shared/subreddit.service';
-import { ValidationSubreddit } from '../../subreddit/validation/Restricted-Subreddit.directive';
 import { PostRequestPayload } from '../model/post.payload';
 import { PostService } from '../shared/posts.service';
 

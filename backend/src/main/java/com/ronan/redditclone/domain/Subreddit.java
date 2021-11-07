@@ -35,6 +35,7 @@ public class Subreddit implements Serializable {
     private String name;
 
     @NotBlank(message = "Description is required")
+    @Lob
     private String description;
 
     @OneToMany(fetch = LAZY)

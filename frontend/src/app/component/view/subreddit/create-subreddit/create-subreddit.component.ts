@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { SubredditRequestModel } from '../model/subreddit-Request.model';
 import { SubredditService } from '../shared/subreddit.service';
 import { ValidationSubreddit } from '../validation/Restricted-Subreddit.directive';
@@ -17,7 +18,7 @@ export class CreateSubredditComponent implements OnInit {
   createSubredditForm!: FormGroup
 
   constructor(private formBuilder: FormBuilder, public dialog: MatDialogRef<CreateSubredditComponent>, private service: SubredditService,
-    private validation: ValidationSubreddit) {
+    private validation: ValidationSubreddit, private router: Router) {
     this.subredditRequestPayload = {
       name: '',
       description: ''
@@ -43,6 +44,7 @@ export class CreateSubredditComponent implements OnInit {
     .subscribe(data => {
       // console.log(data)
       this.closeDialog()
+      this.router.navigate([`r/${data.name}`])
     }, err => {
       // this.service.mensagemWithTime('Ocorreu um erro ao efetuar o seu login! Tente novamente!', 10000)
       // console.log("erro:")
