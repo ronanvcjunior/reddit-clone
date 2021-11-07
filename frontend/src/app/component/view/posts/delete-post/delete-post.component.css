@@ -1,0 +1,18 @@
+.btnDelete {
+  display: inline-flex;
+  align-items: center;
+  color: rgb(120, 124, 126);
+  height: 24px;
+  padding: 16px 8px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.btnDelete:hover {
+  background: rgba(26, 26, 27, 0.1);
+}
+
+.iconDelete {
+  transform: scale(-1, 1);
+  margin-right: 4px;
+}

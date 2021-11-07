@@ -1,0 +1,16 @@
+<main>
+  <div class="container">
+    <h2 class="title">Apagar Post</h2>
+    <div class="line"></div>
+    <p class="text">Tem certeza que deseja apagar seu post? Esta ação não pode ser desfeita.</p>
+    
+  </div>
+  <a class="close" (click)="closeDialog()">
+    <mat-icon aria-hidden="false" class="icon_close">clear</mat-icon>
+  </a>
+
+  <div class="buttons">
+    <a class="button cancel" (click)="closeDialog()">Cancelar</a>
+    <a class="button delete" (click)="deletePost()">Deletar</a>
+  </div>
+</main>

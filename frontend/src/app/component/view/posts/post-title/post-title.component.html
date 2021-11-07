@@ -60,10 +60,14 @@
         </a>
       </div>
 
-      <a *ngIf="postDelete" class="btnCommments">
-        <mat-icon class="iconComments">chat_bubble_outline</mat-icon>
-        {{post.commentCount}} Comentários
-      </a>
+      <div class="options">
+        <a class="btnCommments">
+          <mat-icon class="iconComments">chat_bubble_outline</mat-icon>
+          {{post.commentCount}} Comentários
+        </a>
+
+        <app-delete-post [post]="post"></app-delete-post>
+      </div>
     </div>
   </div>
 </div>

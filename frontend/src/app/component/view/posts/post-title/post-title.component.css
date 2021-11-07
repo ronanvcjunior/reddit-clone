@@ -95,6 +95,11 @@
   text-decoration: underline;
 }
 
+.options {
+  display: flex;
+  align-items: center;
+}
+
 .btnCommments {
   display: inline-flex;
   align-items: center;
