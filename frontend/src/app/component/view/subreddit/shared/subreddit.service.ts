@@ -33,4 +33,9 @@ export class SubredditService {
     const url = `${this.baseUrl}/name/${nameSubreddit}`
     return this.http.get<SubredditResponseModel>(url)
   }
+
+  getSubredditByFirstLetter(letter: string): Observable<SubredditModel[]> {
+    const url = `${this.baseUrl}/letter/${letter}`
+    return this.http.get<SubredditModel[]>(url)
+  }
 }

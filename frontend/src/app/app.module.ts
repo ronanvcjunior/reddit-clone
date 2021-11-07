@@ -41,6 +41,7 @@ import { CreatePostUrlComponent } from './component/view/posts/create-post-url/c
 import { DeletePostComponent } from './component/view/posts/delete-post/delete-post.component';
 import { DeletePostConfirmComponent } from './component/view/posts/delete-post-confirm/delete-post-confirm.component';
 import { SubredditPageComponent } from './component/view/subreddit/subreddit-page/subreddit-page.component';
+import { ListSubredditComponent } from './component/view/subreddit/list-subreddit/list-subreddit.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { SubredditPageComponent } from './component/view/subreddit/subreddit-pag
     CreatePostUrlComponent,
     DeletePostComponent,
     DeletePostConfirmComponent,
-    SubredditPageComponent
+    SubredditPageComponent,
+    ListSubredditComponent
   ],
   imports: [
     BrowserModule,

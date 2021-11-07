@@ -1,0 +1,42 @@
+<div class="header">
+    <div class="container">
+        <h1>Diretório de Comunidades</h1>
+        <div class="alphabet">
+            <a class="letter" [ngClass]="letter == 'a' ? 'active' : ''" href="/subreddits/a">A</a>
+            <a class="letter" [ngClass]="letter == 'b' ? 'active' : ''" href="/subreddits/b">B</a>
+            <a class="letter" [ngClass]="letter == 'c' ? 'active' : ''" href="/subreddits/c">C</a>
+            <a class="letter" [ngClass]="letter == 'd' ? 'active' : ''" href="/subreddits/d">D</a>
+            <a class="letter" [ngClass]="letter == 'e' ? 'active' : ''" href="/subreddits/e">E</a>
+            <a class="letter" [ngClass]="letter == 'f' ? 'active' : ''" href="/subreddits/f">F</a>
+            <a class="letter" [ngClass]="letter == 'g' ? 'active' : ''" href="/subreddits/g">G</a>
+            <a class="letter" [ngClass]="letter == 'h' ? 'active' : ''" href="/subreddits/h">H</a>
+            <a class="letter" [ngClass]="letter == 'i' ? 'active' : ''" href="/subreddits/i">I</a>
+            <a class="letter" [ngClass]="letter == 'j' ? 'active' : ''" href="/subreddits/j">J</a>
+            <a class="letter" [ngClass]="letter == 'k' ? 'active' : ''" href="/subreddits/k">K</a>
+            <a class="letter" [ngClass]="letter == 'l' ? 'active' : ''" href="/subreddits/l">L</a>
+            <a class="letter" [ngClass]="letter == 'm' ? 'active' : ''" href="/subreddits/m">M</a>
+            <a class="letter" [ngClass]="letter == 'n' ? 'active' : ''" href="/subreddits/n">N</a>
+            <a class="letter" [ngClass]="letter == 'o' ? 'active' : ''" href="/subreddits/o">O</a>
+            <a class="letter" [ngClass]="letter == 'p' ? 'active' : ''" href="/subreddits/p">P</a>
+            <a class="letter" [ngClass]="letter == 'q' ? 'active' : ''" href="/subreddits/q">Q</a>
+            <a class="letter" [ngClass]="letter == 'r' ? 'active' : ''" href="/subreddits/r">R</a>
+            <a class="letter" [ngClass]="letter == 's' ? 'active' : ''" href="/subreddits/s">S</a>
+            <a class="letter" [ngClass]="letter == 't' ? 'active' : ''" href="/subreddits/t">T</a>
+            <a class="letter" [ngClass]="letter == 'u' ? 'active' : ''" href="/subreddits/u">U</a>
+            <a class="letter" [ngClass]="letter == 'v' ? 'active' : ''" href="/subreddits/v">V</a>
+            <a class="letter" [ngClass]="letter == 'w' ? 'active' : ''" href="/subreddits/w">W</a>
+            <a class="letter" [ngClass]="letter == 'x' ? 'active' : ''" href="/subreddits/x">X</a>
+            <a class="letter" [ngClass]="letter == 'y' ? 'active' : ''" href="/subreddits/y">Y</a>
+            <a class="letter" [ngClass]="letter == 'z' ? 'active' : ''" href="/subreddits/z">Z</a>
+            <a class="letter" [ngClass]="letter == '0' ? 'active' : ''" href="/subreddits/0">#</a>
+        </div>
+    </div>
+</div>
+
+<div class="main">
+    <h2> Lista das Comunidades que começam com "{{ letter == '0' ? '#': letter.toUpperCase() }}" </h2>
+    <div class="list">
+        <div class="item" *ngFor="let subreddit of subreddits">
+            <a class="item_link" href="r/{{subreddit.name}}">{{subreddit.name}}</a>
+        </div>
+</div>

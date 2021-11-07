@@ -43,8 +43,8 @@
 
     <div class="post-info">
       <span class="subreddit-info">
-        <span class="subreddit-text"><a class="posturl" routerLink="">{{post.subredditName}}</a></span>
-        <span> . Postado por <a class="username" routerLink="/user/{{post.userName}}">{{post.userName}}</a></span>
+        <span class="subreddit-text"><a class="posturl" href="/r/{{ post.subredditName }}">{{post.subredditName}}</a></span>
+        <span> . Postado por <a class="username" routerLink="/user/{{ post.userName }}">{{post.userName}}</a></span>
         <span> . {{post.duration}}</span>
       </span>
       <div class="post-title">

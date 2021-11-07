@@ -30,7 +30,7 @@ public class Subreddit implements Serializable {
 
     @NotBlank(message = "Community name is required")
     @Column(unique = true)
-    @Pattern(regexp = "^[a-zA-Z0-9À-ü][A-z0-9À-ü_]+$")
+    @Pattern(regexp = "^[a-zA-Z0-9][A-z0-9À-ü_]+$")
     @Length(min = 3, max = 21, message = "O campo NAME deve ter entre 5 e 25 caracteres")
     private String name;
 
