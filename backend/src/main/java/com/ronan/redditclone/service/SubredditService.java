@@ -74,4 +74,16 @@ public class SubredditService {
         subreddit.setNumberOfPosts(subreddit.getNumberOfPosts()-1);
         repository.save(subreddit);
     }
+
+    @Transactional(readOnly = true)
+    public List<SubredditDto> findByFirstLater(char letter) {
+        List<Subreddit> subreddits;
+        if (letter != '0') {
+            subreddits = repository.findAllByFirstLetter(letter);
+        } else {
+            subreddits = repository.findAllByFirstLetterIsSpecialCharacter(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+        }
+        List<SubredditDto> subredditDtos = subreddits.stream().map(mapper::mapSubredditToDto).collect(Collectors.toList());
+        return subredditDtos;
+    }
 }

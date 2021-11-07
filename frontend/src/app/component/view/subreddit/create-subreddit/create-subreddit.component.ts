@@ -27,7 +27,7 @@ export class CreateSubredditComponent implements OnInit {
 
   ngOnInit(): void {
     this.createSubredditForm = this.formBuilder.group({
-      name: [null, [Validators.required, Validators.pattern('^[a-zA-Z0-9À-ü_]+$'), Validators.minLength(3), Validators.maxLength(21)], [this.validation.nameSubredditUniqueValidator()]],
+      name: [null, [Validators.required, Validators.pattern('^[a-zA-Z0-9À-ü][a-zA-Z0-9À-ü_]+$'), Validators.minLength(3), Validators.maxLength(21)], [this.validation.nameSubredditUniqueValidator()]],
       description: [null, [Validators.required]]
     }, { asyncValidator: this.validation.nameSubredditUniqueValidator() })
   }

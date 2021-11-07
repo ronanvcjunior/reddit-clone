@@ -57,4 +57,10 @@ public class SubredditController {
         SubredditResponse subredditDto = service.findByName(nameSubreddit);
         return ResponseEntity.ok().body(subredditDto);
     }
+
+    @GetMapping(path = "/letter/{letter}")
+    public ResponseEntity<List<SubredditDto>> getSubredditByFirstLater(@PathVariable char letter) {
+        List<SubredditDto> subredditDto = service.findByFirstLater(letter);
+        return ResponseEntity.ok().body(subredditDto);
+    }
 }
