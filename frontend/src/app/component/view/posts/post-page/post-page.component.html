@@ -11,7 +11,7 @@
           <span class="subreddit-info">
             <span class="subreddit-text"><a class="posturl"
                 href="/r/{{ post.subredditName }}">{{post.subredditName}}</a></span>
-            <span> . Postado por <a class="username" routerLink="/user/{{ post.userName }}">{{post.userName}}</a></span>
+            <span> . Postado por <a class="username">{{post.userName}}</a></span>
             <span> . {{post.duration}}</span>
           </span>
           <div class="post-title">
@@ -85,14 +85,14 @@
 
   <div class="sidebar">
     <div class="sidebar_subreddit_info">
-      <div class="sidebar_subreddit_info_header"></div>
+      <div class="sidebar_subreddit_info_header" routerLink="/r/{{ post.subredditName }}"></div>
 
       <div class="subreddit">
-        <div class="icon">
+        <div class="icon" routerLink="/r/{{ post.subredditName }}">
           <p>r/</p>
         </div>
 
-        <div class="subreddit__info__name">{{ subreddit.name }}</div>
+        <div class="subreddit__info__name" routerLink="/r/{{ post.subredditName }}">{{ subreddit.name }}</div>
       </div>
 
       <div class="description">

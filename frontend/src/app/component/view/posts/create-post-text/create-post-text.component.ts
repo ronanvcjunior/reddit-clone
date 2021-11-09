@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { SubredditModel } from '../../subreddit/model/subreddit.model';
 import { SubredditService } from '../../subreddit/shared/subreddit.service';
 import { PostRequestPayload } from '../model/post.payload';
@@ -18,7 +19,7 @@ export class CreatePostTextComponent implements OnInit {
 
   createPostForm!: FormGroup
 
-  constructor(private formBuilder: FormBuilder, private postService: PostService, private subredditService: SubredditService) {
+  constructor(private formBuilder: FormBuilder, private postService: PostService, private subredditService: SubredditService, private router: Router) {
 
     this.postRequestPayload = {
       subredditName: '',
@@ -56,7 +57,8 @@ export class CreatePostTextComponent implements OnInit {
 
     this.postService.postPost(this.postRequestPayload)
       .subscribe(data => {
-        console.log(data)
+        // console.log(data)
+        this.router.navigate([`r/${data.subredditName}/post/${data.postId}`])
       }, err => {
         // this.service.mensagemWithTime('Ocorreu um erro ao efetuar o seu login! Tente novamente!', 10000)
         // console.log("erro:")

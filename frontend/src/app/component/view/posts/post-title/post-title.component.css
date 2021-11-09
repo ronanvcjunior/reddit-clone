@@ -28,7 +28,6 @@
   border: 1px solid #cccccc;
   background-color: #ffffff;
   margin-bottom: 10px;
-  cursor: pointer;
 }
 
 .post:hover {
@@ -48,6 +47,10 @@
   padding: 8px 16px 0px 8px;
   border-radius: 0 8px 8px 0;
   width: 100%;
+}
+
+.text {
+  cursor: pointer;
 }
 
 .subreddit-info {
@@ -113,6 +116,7 @@
   padding: 16px 8px;
   font-size: 12px;
   font-weight: 500;
+  text-decoration: none;
 }
 
 .btnCommments:hover {

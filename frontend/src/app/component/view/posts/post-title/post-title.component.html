@@ -35,7 +35,7 @@
     </mat-chip-list>
 
   </div>
-  <div class="post" (click)="openPost(post.subredditName, post.postId)" *ngFor="let post of posts$">
+  <div class="post" *ngFor="let post of posts$">
 
     <div class="votebox">
       <app-vote-button [post]="post"></app-vote-button>
@@ -43,25 +43,28 @@
 
     <div class="post-info">
       <span class="subreddit-info">
-        <span class="subreddit-text"><a class="posturl" href="/r/{{ post.subredditName }}">{{post.subredditName}}</a></span>
-        <span> . Postado por <a class="username" routerLink="/user/{{ post.userName }}">{{post.userName}}</a></span>
+        <span class="subreddit-text"><a class="posturl"
+            href="/r/{{ post.subredditName }}">{{post.subredditName}}</a></span>
+        <span> . Postado por <a class="username">{{post.userName}}</a></span>
         <span> . {{post.duration}}</span>
       </span>
-      <div class="post-title">
-        <h3 class="postname">{{post.postName}}</h3>
-      </div>
-      <div class="post__text">
-        <p class="post-text" [innerHtml]="post.description | safeHtml"></p>
-      </div>
-      <div>
-        <a *ngIf="post.url" href="{{post.url}}" target="_blank" class="post-url">
-          {{post.url}}
-          <mat-icon class="iconUrl">ios_share</mat-icon>
-        </a>
+      <div class="text" (click)="openPost(post.subredditName, post.postId)">
+        <div class="post-title">
+          <h3 class="postname">{{post.postName}}</h3>
+        </div>
+        <div class="post__text">
+          <p class="post-text" [innerHtml]="post.description | safeHtml"></p>
+        </div>
+        <div>
+          <a *ngIf="post.url" href="{{post.url}}" target="_blank" class="post-url">
+            {{post.url}}
+            <mat-icon class="iconUrl">ios_share</mat-icon>
+          </a>
+        </div>
       </div>
 
       <div class="options">
-        <a class="btnCommments">
+        <a class="btnCommments" href="/r/{{post.subredditName}}/post/{{post.postId}}#comments">
           <mat-icon class="iconComments">chat_bubble_outline</mat-icon>
           {{post.commentCount}} Comentários
         </a>

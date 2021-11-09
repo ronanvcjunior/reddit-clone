@@ -6,6 +6,7 @@
   background-color: #f7f9fa;
   padding-top: 8px;
   border-radius: 8px 0 0 8px;
+  cursor: pointer;
 }
 
 .box-upvote,

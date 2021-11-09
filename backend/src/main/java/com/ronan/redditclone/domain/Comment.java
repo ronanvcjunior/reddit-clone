@@ -25,6 +25,7 @@ public class Comment implements Serializable {
     private Long id;
 
     @NotEmpty
+    @Lob
     private String text;
 
     @ManyToOne(fetch = LAZY)

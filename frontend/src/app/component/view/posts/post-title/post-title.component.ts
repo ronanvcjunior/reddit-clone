@@ -17,7 +17,7 @@ export class PostTitleComponent implements OnInit {
 
   posts$: Array<PostModel> = [];
 
-  status: string = 'postId,desc';
+  status: string = 'reactionsCount,desc';
 
   numberPosts!: number
 
@@ -25,7 +25,7 @@ export class PostTitleComponent implements OnInit {
   scrollFunction() {
     let scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight
     let scroll = Math.round(scrollHeight - document.documentElement.scrollTop)
-    console.log(scroll)
+    // console.log(scroll)
     if (scroll == 0) {
       this.numberPosts += this.numberPosts + 20
       if (this.route.snapshot.url[0] !== undefined) {
@@ -58,7 +58,7 @@ export class PostTitleComponent implements OnInit {
     this.postService.getAllPostsPage(sort, 0, this.numberPosts)
       .subscribe(data => {
         this.posts = data
-        console.log(this.posts)
+        // console.log(this.posts)
         this.posts$ = this.posts.content
       })
   }

@@ -114,10 +114,7 @@
   padding: 16px 8px;
   font-size: 12px;
   font-weight: 500;
-}
-
-.btnCommments:hover {
-  background: rgba(26, 26, 27, 0.1);
+  cursor: default;
 }
 
 .iconComments {
@@ -225,6 +222,7 @@
   font-weight: 700;
   letter-spacing: 0.5px;
   color: #1c1c1c;
+  cursor: pointer;
 }
 
 .subreddit {
@@ -246,6 +244,7 @@
   align-items: center;
   transform: translateY(-32px);
   margin-right: 8px;
+  cursor: pointer;
 }
 
 .icon p {
@@ -267,6 +266,7 @@
   font-weight: 500;
   line-height: 20px;
   transform: translateY(-32px);
+  cursor: pointer;
 }
 
 .description {
