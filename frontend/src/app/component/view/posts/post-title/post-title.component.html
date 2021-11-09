@@ -35,7 +35,7 @@
     </mat-chip-list>
 
   </div>
-  <div class="post" *ngFor="let post of posts$">
+  <div class="post" (click)="openPost(post.subredditName, post.postId)" *ngFor="let post of posts$">
 
     <div class="votebox">
       <app-vote-button [post]="post"></app-vote-button>
@@ -50,7 +50,7 @@
       <div class="post-title">
         <h3 class="postname">{{post.postName}}</h3>
       </div>
-      <div>
+      <div class="post__text">
         <p class="post-text" [innerHtml]="post.description | safeHtml"></p>
       </div>
       <div>

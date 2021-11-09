@@ -42,6 +42,7 @@ import { DeletePostComponent } from './component/view/posts/delete-post/delete-p
 import { DeletePostConfirmComponent } from './component/view/posts/delete-post-confirm/delete-post-confirm.component';
 import { SubredditPageComponent } from './component/view/subreddit/subreddit-page/subreddit-page.component';
 import { ListSubredditComponent } from './component/view/subreddit/list-subreddit/list-subreddit.component';
+import { PostPageComponent } from './component/view/posts/post-page/post-page.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { ListSubredditComponent } from './component/view/subreddit/list-subreddi
     DeletePostComponent,
     DeletePostConfirmComponent,
     SubredditPageComponent,
-    ListSubredditComponent
+    ListSubredditComponent,
+    PostPageComponent
   ],
   imports: [
     BrowserModule,

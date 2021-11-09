@@ -1,5 +1,5 @@
 header {
-    background-color: #ffffff;
+    background-color: #f7f9fa;
 }
 
 .banner {
@@ -19,7 +19,7 @@ header {
 .icon {
     height: 72px;
     width: 72px;
-    border: 5px solid #fff;
+    border: 5px solid #f7f9fa;
     background-color: #33a8ff;
     border-radius: 50%;
     display: flex;
@@ -33,7 +33,7 @@ header {
     margin-bottom: 16px;
     font-size: 56px;
     font-weight: 500;
-    color: #fff;
+    color: #f7f9fa;
 }
 
 .subreddit_info {

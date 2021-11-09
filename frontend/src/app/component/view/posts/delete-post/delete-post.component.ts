@@ -18,11 +18,13 @@ export class DeletePostComponent implements OnInit {
   constructor(private dialog: MatDialog, private authService: AuthService) { }
 
   ngOnInit(): void {
+    // console.log(this.post.userName +' + '+ this.authService.getUserName())
     if (this.post.userName == this.authService.getUserName()) {
       this.isPostUser = true
     } else {
       this.isPostUser = false
     }
+    // console.log(this.isPostUser)
   }
 
   openConfirmDelete(): void {

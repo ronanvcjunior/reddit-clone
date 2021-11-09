@@ -1,0 +1,120 @@
+<section class="home">
+  <div class="posts">
+    <div class="container">
+      <div class="post">
+
+        <div class="votebox">
+          <app-vote-button [post]="post"></app-vote-button>
+        </div>
+
+        <div class="post-info">
+          <span class="subreddit-info">
+            <span class="subreddit-text"><a class="posturl"
+                href="/r/{{ post.subredditName }}">{{post.subredditName}}</a></span>
+            <span> . Postado por <a class="username" routerLink="/user/{{ post.userName }}">{{post.userName}}</a></span>
+            <span> . {{post.duration}}</span>
+          </span>
+          <div class="post-title">
+            <h3 class="postname">{{post.postName}}</h3>
+          </div>
+          <div class="post__text">
+            <p class="post-text" [innerHtml]="post.description | safeHtml"></p>
+          </div>
+          <div>
+            <a *ngIf="post.url" href="{{post.url}}" target="_blank" class="post-url">
+              {{post.url}}
+              <mat-icon class="iconUrl">ios_share</mat-icon>
+            </a>
+          </div>
+
+          <div class="options">
+            <a class="btnCommments">
+              <mat-icon class="iconComments">chat_bubble_outline</mat-icon>
+              {{post.commentCount}} Comentários
+            </a>
+
+            <app-delete-post [post]="post"></app-delete-post>
+          </div>
+        </div>
+      </div>
+
+      <div class="post_comment">
+        <form *ngIf="isLoggedIn" class="form" [formGroup]="createCommentForm" (submit)="createComment()">
+
+          <editor formControlName="text" [init]="{
+                    height: 350,
+                    menubar: false,
+                    plugins: [
+                    'advlist autolink lists link image charmap print preview anchor',
+                    'searchreplace visualblocks code fullscreen',
+                    'insertdatetime media table paste code help wordcount'
+                    ],
+                    toolbar:
+                    'undo redo | formatselect | bold italic backcolor | \
+                    alignleft aligncenter alignright alignjustify | \
+                    bullist numlist outdent indent | removeformat | help'}">
+          </editor>
+
+          <div class="button">
+            <button class="button__post">COMENTAR</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="line"></div>
+
+      <div id="comments">
+        <div class="comment" *ngFor="let comment of comments$">
+          <div class="comment__imagens">
+            <div class="comment__avatar"></div>
+            <div class="lineVertical"></div>
+          </div>
+
+          <div class="post-info">
+            <span class="subreddit-info">
+              <span class="subreddit-text"><a class="posturl" routerLink="/user/{{ comment.userName }}">{{comment.userName}}</a></span>
+            </span>
+            <div class="post__text">
+              <p class="post-text" [innerHtml]="comment.text | safeHtml"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar">
+    <div class="sidebar_subreddit_info">
+      <div class="sidebar_subreddit_info_header"></div>
+
+      <div class="subreddit">
+        <div class="icon">
+          <p>r/</p>
+        </div>
+
+        <div class="subreddit__info__name">{{ subreddit.name }}</div>
+      </div>
+
+      <div class="description">
+        {{ subreddit.description }}
+      </div>
+
+      <div class="numberOfPosts">
+        <span class="number">{{ subreddit.numberOfPosts }}</span>
+        <span class="ofPosts">Postagens</span>
+      </div>
+
+      <div class="line"></div>
+
+      <div class="date">
+        <mat-icon class="date_icon">calendar_today</mat-icon>
+        <span>Criado em {{ dateCreate }}</span>
+      </div>
+
+      <div style="text-align: center">
+        <button class="btnCreatePost" (click)="criarPostagem()">Criar Postagem</button>
+      </div>
+    </div>
+    <app-side-footer></app-side-footer>
+  </div>
+</section>

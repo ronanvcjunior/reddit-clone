@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PostModel } from '../model/post.model';
 import { PostPageModel } from '../model/postPage.model';
 import { PostService } from '../shared/posts.service';
@@ -39,7 +39,7 @@ export class PostTitleComponent implements OnInit {
     }
   }
 
-  constructor(private postService: PostService, private route: ActivatedRoute) {
+  constructor(private postService: PostService, private route: ActivatedRoute, private router: Router) {
     this.numberPosts = 20
   }
 
@@ -77,5 +77,9 @@ export class PostTitleComponent implements OnInit {
   }
 
   getPostByUser() {
+  }
+
+  openPost(name_subreddit: string, id_post: number):void {
+    this.router.navigate([`r/${name_subreddit}/post/${id_post}`])
   }
 }
