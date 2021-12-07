@@ -136,7 +136,7 @@
     height: 24px;
     width: 100%;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     margin-top: 8px;
     margin-bottom: 16px;
 }
