@@ -8,13 +8,14 @@ import { map, tap } from 'rxjs/operators';
 import { LocalStorageService } from 'ngx-webstorage';
 import { LoginResponse } from '../login/login.response.payload';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  baseUrl: String = 'http://localhost:8080/api'
+  baseUrl: String = environment.baseUrl;
 
   constructor(
         private http: HttpClient, 
@@ -22,12 +23,12 @@ export class AuthService {
         private _snack: MatSnackBar) { }
 
   signup(signupRequestPayload: SignupRequestPayload): Observable<any> {
-    const url = `${this.baseUrl}/auth/signup`
+    const url = `${this.baseUrl}/api/auth/signup`
     return this.http.post(url, signupRequestPayload, { responseType: 'text' })
   }
 
   login(loginRequestPayload: LoginRequestPayload): Observable<boolean> {
-    const url = `${this.baseUrl}/auth/login`
+    const url = `${this.baseUrl}/api/auth/login`
     return this.http.post<LoginResponse>(url, loginRequestPayload).pipe(map(data => {
       this.localStorage.store('authenticationToken', data.authenticationToken)
       this.localStorage.store('username', data.username)
@@ -39,12 +40,12 @@ export class AuthService {
   }
 
   checkForUsername(username: String): Observable<any> {
-    const url = `${this.baseUrl}/auth/user/${username}`
+    const url = `${this.baseUrl}/api/auth/user/${username}`
     return this.http.get(url, { responseType: 'text' })
   }
 
   findAllUsers(): Observable<any> {
-    const url = `${this.baseUrl}/auth/users`
+    const url = `${this.baseUrl}/api/auth/users`
     return this.http.get(url)
   }
 
@@ -64,7 +65,7 @@ export class AuthService {
   }
 
   refreshToken() {
-    const url = `${this.baseUrl}/auth/refresh/token`
+    const url = `${this.baseUrl}/api/auth/refresh/token`
 
     const refreshTokenPayload = {
       refreshToken: this.getRefreshToken(),
