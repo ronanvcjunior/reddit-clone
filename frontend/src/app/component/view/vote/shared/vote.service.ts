@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { VoteModel } from '../model/vote.model';
 
 @Injectable({
@@ -8,16 +9,17 @@ import { VoteModel } from '../model/vote.model';
 })
 export class VoteService {
 
-  baseUrl: string = 'http://localhost:8080/api/votes'
+  baseUrl: String = environment.baseUrl;
 
   constructor(private http: HttpClient) { }
 
   postVote(vote: VoteModel): Observable<VoteModel> {
-    return this.http.post<VoteModel>(this.baseUrl, vote)
+    const url = `${this.baseUrl}/api/votes`
+    return this.http.post<VoteModel>(url, vote)
   }
 
   getVote(postId: number, username: string): Observable<VoteModel> {
-    const url = `${this.baseUrl}/${postId}/${username}`
+    const url = `${this.baseUrl}/api/votes/${postId}/${username}`
     return this.http.get<VoteModel>(url)
   }
 }
