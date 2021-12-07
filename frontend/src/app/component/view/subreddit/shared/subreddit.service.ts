@@ -12,7 +12,7 @@ import { SubredditPageModel } from '../model/subredditPage.model';
 })
 export class SubredditService {
 
-  baseUrl: String = environment.baseUrl;
+  baseUrl: String = 'https://reddit-clone-spring-angular.herokuapp.com'
 
   constructor(private http: HttpClient) { }
 
