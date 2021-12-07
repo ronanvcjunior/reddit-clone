@@ -9,7 +9,7 @@ import { VoteModel } from '../model/vote.model';
 })
 export class VoteService {
 
-  baseUrl: String = environment.baseUrl;
+  baseUrl: String = 'https://reddit-clone-spring-angular.herokuapp.com'
 
   constructor(private http: HttpClient) { }
 

@@ -15,7 +15,7 @@ import { environment } from 'src/environments/environment';
 })
 export class AuthService {
 
-  baseUrl: String = environment.baseUrl;
+  baseUrl: String = 'https://reddit-clone-spring-angular.herokuapp.com'
 
   constructor(
         private http: HttpClient, 
