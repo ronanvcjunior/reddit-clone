@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
 import { SubredditRequestModel } from '../model/subreddit-Request.model';
 import { SubredditResponseModel } from '../model/subreddit-response.model';
 import { SubredditModel } from '../model/subreddit.model';
@@ -12,33 +11,31 @@ import { SubredditPageModel } from '../model/subredditPage.model';
 })
 export class SubredditService {
 
-  baseUrl: String = environment.baseUrl;
+  baseUrl: string = 'http://localhost:8080/api/subreddit'
 
   constructor(private http: HttpClient) { }
 
   getAllSubreddits(): Observable<Array<SubredditModel>> {
-    const url = `${this.baseUrl}/api/subreddit`
-    return this.http.get<Array<SubredditModel>>(url);
+    return this.http.get<Array<SubredditModel>>(this.baseUrl);
   }
 
   getAllSubredditsPage(sort: string, page: number, size: number): Observable<SubredditPageModel> {
-    const url = `${this.baseUrl}/api/subreddit/page/?sort=${sort}&sort=id,desc&page=${page}&size=${size}`
+    const url = `${this.baseUrl}/page/?sort=${sort}&sort=id,desc&page=${page}&size=${size}`
     // console.log(url)
     return this.http.get<SubredditPageModel>(url);
   }
 
   postSubreddit(subredditRequest: SubredditRequestModel): Observable<SubredditModel> {
-    const url = `${this.baseUrl}/api/subreddit`
-    return this.http.post<SubredditModel>(url, subredditRequest)
+    return this.http.post<SubredditModel>(this.baseUrl, subredditRequest)
   }
 
   getSubredditByName(nameSubreddit: string): Observable<SubredditResponseModel> {
-    const url = `${this.baseUrl}/api/subreddit/name/${nameSubreddit}`
+    const url = `${this.baseUrl}/name/${nameSubreddit}`
     return this.http.get<SubredditResponseModel>(url)
   }
 
   getSubredditByFirstLetter(letter: string): Observable<SubredditModel[]> {
-    const url = `${this.baseUrl}/api/subreddit/letter/${letter}`
+    const url = `${this.baseUrl}/letter/${letter}`
     return this.http.get<SubredditModel[]>(url)
   }
 }
