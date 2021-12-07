@@ -12,7 +12,7 @@ import { CommentPayloadModel } from '../model/commentPayload.model';
 })
 export class CommentService {
 
-  baseUrl: String = 'https://reddit-clone-spring-angular.herokuapp.com'
+  baseUrl: String = environment.baseUrl;
 
   constructor(private http: HttpClient, private _snack: MatSnackBar) { }
 
